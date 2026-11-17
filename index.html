@@ -374,7 +374,7 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
     </ul></nav>
     <div class="side-foot">
       <button class="link" id="export" type="button"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg>Copy list as CSV</button>
-      <p id="side-note">Leads found by Sellbird in public business listings and on each company's own website. Listing data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors.</p>
+      <p id="side-note">Data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a></p>
     </div>
   </aside>
 
@@ -760,14 +760,13 @@ setView(location.hash.slice(1)||(()=>{try{return localStorage.getItem("lh-view3"
   if(!db){
     try{const r=await fetch("leads.json",{cache:"no-store"});if(!r.ok)throw 0;const data=await r.json(),ed=localEdits();
       leads=(data.leads||[]).map(l=>({...l,...(ed[l.id]||{})}));localMode=true;
-      $("#side-note").insertAdjacentHTML("beforeend",` Status and notes save in this browser only${data.generatedAt?` · list updated ${esc(fmtDate(data.generatedAt))}`:""}.`)}
+    }
     catch{}
     loaded=true;render();return}
   try{const u=await window.claude.use("user");if(u&&await u.can("data.write")===false)canWrite=false}catch{}
   let first=true;
   db.collection("leads").limit(1000).onSnapshot(snap=>{
     leads=snap.docs.map(d=>({id:d.id,...d.data()}));loaded=true;
-    if(first){first=false;$("#side-note").insertAdjacentHTML("beforeend"," Status and notes save for the whole team.")}
     render();
   },err=>{loaded=true;render();toast(`Couldn't load your leads (${err&&err.code||"error"}). Reload to try again.`)});
   setTimeout(()=>{if(!loaded){$("#content").innerHTML=`<section class="panel"><div class="empty"><b>Your leads are taking a while to load</b>Check your connection. The page fills in once they arrive.</div></section>`}},10000);
