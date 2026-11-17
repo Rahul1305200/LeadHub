@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T12:41:30+00:00",
+ "generatedAt": "2026-11-17T12:44:21+00:00",
  "leads": [
   {
    "id": "45a7bda3a1a3",
@@ -58,7 +58,11 @@
     "The site is on GoDaddy, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:31:00+06:00",
+   "statusChangedAt": "2026-11-17T18:31:00+06:00",
+   "notes": "Cold email sent to info@daylawpc.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "9a2d71a9ce8e",
@@ -181,7 +185,11 @@
     "The site has only 5 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:32:00+06:00",
+   "statusChangedAt": "2026-11-17T18:32:00+06:00",
+   "notes": "Cold email sent to george@ohico.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "0ac57d57f2d8",
@@ -354,7 +362,11 @@
     "The site is on Squarespace, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:32:00+06:00",
+   "statusChangedAt": "2026-11-17T18:32:00+06:00",
+   "notes": "Cold email sent to matt@straightlinedr.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "a39cd4b3fc01",
@@ -416,7 +428,11 @@
     "You're paying for ads, so every visitor the site doesn't convert costs you money"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:36:00+06:00",
+   "statusChangedAt": "2026-11-17T18:36:00+06:00",
+   "notes": "Cold email sent to info@radiancedentalnw.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "545b04089d68",
@@ -527,7 +543,11 @@
     "The site is on Squarespace, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:37:00+06:00",
+   "statusChangedAt": "2026-11-17T18:37:00+06:00",
+   "notes": "Cold email sent to info@daytondentaldenver.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "1375fa1b782b",
@@ -868,7 +888,8 @@
     "The site is on GoDaddy, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-16"
+   "foundAt": "2026-11-16",
+   "notes": "Cold email to kristi@garrisonplumber.com bounced on 17 Nov 2026 (address doesn't exist). Call (512) 295-0825 instead."
   },
   {
    "id": "f1973b40f07b",
@@ -918,7 +939,11 @@
     "The site has only 3 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:37:00+06:00",
+   "statusChangedAt": "2026-11-17T18:37:00+06:00",
+   "notes": "Cold email sent to aaron@tillmannlaw.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "6fc561570557",
@@ -968,7 +993,11 @@
     "The site has only 1 page, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:38:00+06:00",
+   "statusChangedAt": "2026-11-17T18:38:00+06:00",
+   "notes": "Cold email sent to john@newberglaw.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "d6d8f6e2cbdd",
@@ -1740,7 +1769,11 @@
     "The site is on Wix, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:38:00+06:00",
+   "statusChangedAt": "2026-11-17T18:38:00+06:00",
+   "notes": "Cold email sent to info@emmettphair.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "817ab422c623",
@@ -1792,7 +1825,11 @@
     "The site is on Wix, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:39:00+06:00",
+   "statusChangedAt": "2026-11-17T18:39:00+06:00",
+   "notes": "Cold email sent to info@pacificdentalcarepc.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "ac80080968b5",
@@ -1844,7 +1881,11 @@
     "The site is on Wix, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:39:00+06:00",
+   "statusChangedAt": "2026-11-17T18:39:00+06:00",
+   "notes": "Cold email sent to info@alliant-systems.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "4330c7ae7534",
@@ -1962,7 +2003,11 @@
     "The site is on Wix, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:40:00+06:00",
+   "statusChangedAt": "2026-11-17T18:40:00+06:00",
+   "notes": "Cold email sent to office@ravenpatents.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "73fbb5e3504d",
@@ -2114,7 +2159,11 @@
     "The site is on Wix, which limits speed and SEO compared with a custom build"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:40:00+06:00",
+   "statusChangedAt": "2026-11-17T18:40:00+06:00",
+   "notes": "Cold email sent to cliff@cliffcoulter.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "6a6e35e7f2d1",
@@ -2428,7 +2477,11 @@
     "The site has only 2 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-17T18:40:00+06:00",
+   "statusChangedAt": "2026-11-17T18:40:00+06:00",
+   "notes": "Cold email sent to erin@mosaikdesign.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "aba617f8d8dc",
