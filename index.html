@@ -108,10 +108,11 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .who{display:flex;gap:14px;align-items:center;min-width:0}
 .mono{width:64px;height:64px;border-radius:16px;background:var(--pink-soft);color:var(--pink);display:grid;place-items:center;font-size:26px;font-weight:700;flex:none}
 .who b{display:block;font-size:18px;font-weight:500;line-height:1.3;overflow-wrap:anywhere}
-.who div>span:not(.stag){display:block;font-size:var(--t-s);color:var(--muted)}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs);font-weight:500;padding:4px 10px 4px 6px;border-radius:999px;background:var(--card-2);color:var(--fg-2)}
-.chip svg.i{width:14px;height:14px;color:var(--ib)}
+.who div>span:not(.stag):not(.fitline){display:block;font-size:var(--t-s);color:var(--muted)}
+.who .fitline{display:block;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-s);font-weight:500;color:var(--fg-2);line-height:1.35}
+.chip svg.i{width:17px;height:17px;color:var(--ib)}
 .next-actions{display:flex;gap:8px;margin-top:auto}
 .next-actions .btn.pink{flex:1;min-height:52px;font-size:16px}
 .hbars{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
@@ -225,9 +226,7 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .who .name:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:4px}
 .lrow.worked .who .name{color:var(--fg-2)}
 .what{display:flex;flex-direction:column;gap:8px;min-width:0}
-.lrow .chip{background:var(--card-2)}
-.lrow:hover .chip{background:var(--card-3)}
-.chip.more{padding:4px 10px;color:var(--muted)}
+.chip.more{color:var(--muted);font-weight:400}
 .chip.warn{--ib:var(--k-stale);color:var(--k-stale)}
 .pitchline{margin:0;font-size:var(--t-s);color:var(--fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pitchline span{color:var(--muted)}
@@ -238,18 +237,19 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .rpill{--ib:var(--k-phone);display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px 0 12px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--fg);font-weight:500;font-size:var(--t-s);white-space:nowrap;transition:background-color .15s,border-color .15s}
 .rpill svg.i{color:var(--ib)}
 .rpill:hover{background:var(--card-3);border-color:var(--card-3)}
-.stag{display:inline-flex;align-items:center;gap:6px;margin-top:7px;padding:3px 10px 3px 7px;border-radius:999px;font-size:var(--t-xs);font-weight:500;color:var(--sc);background:color-mix(in srgb,var(--sc) 15%,transparent)}
-.stag svg.i{width:14px;height:14px}
+.stag{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:var(--t-s);font-weight:500;color:var(--sc)}
+.stag svg.i{width:16px;height:16px}
 .stag.pop{animation:pop .28s var(--e-out)}
 .lrow .go{width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:var(--fg);display:grid;place-items:center}
 .lrow:hover .go{background:var(--card-3)}
 .copy{border:0;background:var(--card-2);border-radius:10px;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--fg-2);margin-left:auto;transition:background-color .15s,color .15s}
 .copy:hover{background:var(--card-3);color:var(--fg)}
 .copy svg.i{width:15px;height:15px}
-.fitpill{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs);font-weight:500;padding:3px 10px;border-radius:999px}
-.fitpill.fit-strong{background:var(--pink-btn);color:#fff}
-.fitpill.fit-good{background:var(--pink-soft);color:#ffb3cf;box-shadow:inset 0 0 0 1px var(--pink-line)}
-.fitpill.fit-maybe{background:var(--card-2);color:var(--fg-2)}
+.fitpill{display:inline-flex;align-items:center;gap:8px;font-size:var(--t-s);font-weight:500;color:var(--fd)}
+.fitpill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.fitpill.fit-strong{color:var(--pink)}
+.fitpill.fit-good{color:#ffb3cf}
+.fitpill.fit-maybe{color:var(--fg-2)}
 .more-btn{align-self:center;margin-top:4px}
 .empty{padding:56px 20px;text-align:center;color:var(--muted)}
 .empty b{display:block;color:var(--fg);font-weight:500;font-size:18px;margin-bottom:4px}
@@ -310,7 +310,7 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .kv div{display:flex;gap:4px 10px;align-items:center;flex-wrap:wrap;min-width:0;overflow-wrap:anywhere;font-size:var(--t-m);color:var(--fg)}
 .kv .kl{width:100%;font-size:var(--t-xs);color:var(--muted);line-height:1.3}
 .kv .miss{color:var(--fg-2)}
-.kv .tag{font-size:var(--t-xs);color:var(--k-stale);background:color-mix(in srgb,var(--k-stale) 14%,transparent);border-radius:999px;padding:2px 9px}
+.kv .tag{font-size:var(--t-s);color:var(--k-stale)}
 .kv a{color:var(--fg);text-underline-offset:3px;text-decoration-color:var(--pink-line)}
 .kv .copy{margin-left:0}
 details.script{background:var(--card);border-radius:var(--r-in)}
@@ -570,8 +570,8 @@ function renderDashboard(){
   dashNow={bars:Object.fromEntries(STAGES.slice(1).map(([k])=>[k,bw(k)])),counts:{sent,replies,calls,waiting,today:done}};
 
   const nextCard=nx?`<article class="card"><div class="card-h"><h2>Next up</h2><button class="go" type="button" data-open="${esc(nx.id)}" aria-label="Open ${esc(nx.name)}">${ic("out")}</button></div>
-      <div class="who"><span class="mono" aria-hidden="true">${esc((nx.name||"?").trim()[0].toUpperCase())}</span><div style="min-width:0"><b>${esc(nx.name)}</b><span>${esc(nx.trade)} · ${esc(nx.city)}</span></div></div>
-      <div class="chips">${fitPill(nx)}${(nx.reasons||[]).slice(0,2).map(probChip).join("")}</div>
+      <div class="who"><span class="mono" aria-hidden="true">${esc((nx.name||"?").trim()[0].toUpperCase())}</span><div style="min-width:0"><b>${esc(nx.name)}</b><span>${esc(nx.trade)} · ${esc(nx.city)}</span><span class="fitline">${fitPill(nx)}</span></div></div>
+      <div class="chips">${(nx.reasons||[]).slice(0,2).map(probChip).join("")}</div>
       <p class="pitchline"><span>Pitch:</span> ${esc(nx.pitch||"Free website audit")}</p>
       <div class="next-actions"><button class="btn pink" type="button" data-open="${esc(nx.id)}">${ic("arrowr")}Open lead</button>${nx.email?`<button class="btn icon" type="button" data-copy="email" data-id="${esc(nx.id)}" aria-label="Copy email ${esc(nx.email)}" title="Copy ${esc(nx.email)}">${ic("mail")}</button>`:""}${nx.phone?`<button class="btn icon" type="button" data-copy="phone" data-id="${esc(nx.id)}" aria-label="Copy phone number ${esc(nx.phone)}" title="Copy ${esc(nx.phone)}">${ic("phone")}</button>`:""}</div></article>`
     :`<article class="card"><div class="card-h"><h2>Next up</h2></div><div class="empty"><b>Everyone's been contacted</b>New leads appear here after the next Sellbird search.</div></article>`;
