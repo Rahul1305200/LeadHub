@@ -123,22 +123,36 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .hbar .n{text-align:right;color:var(--fg);font-weight:500}
 .cap-line{margin:auto 0 0;font-size:var(--t-s);color:var(--muted)}
 .cap-line b{color:var(--fg-2);font-weight:500}
-.ringwrap{display:flex;align-items:center;justify-content:center;gap:18px;position:relative;margin-top:auto}
-.ring{width:170px;height:170px;position:relative}
-.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
-.ring .c{position:absolute;inset:26px;border-radius:50%;background:#fff;color:#0d0d0f;display:grid;place-items:center;text-align:center;align-content:center}
-.ring .c b{font-size:30px;font-weight:500;line-height:1}
-.ring .c span{font-size:11.5px;color:#55555f}
-.ring-note{font-size:var(--t-s);color:var(--muted);text-align:center;margin:0}
-.ring-note b{color:var(--fg-2);font-weight:500}
-.kpi{gap:28px}
-.kpi .top-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.kpi .circ{width:58px;height:58px;border-radius:50%;background:#fff;color:#0d0d0f;display:grid;place-items:center;flex:none}
-.kpi .circ svg.i{width:26px;height:26px}
-.kpi .klbl{font-size:18px;color:var(--fg-2);margin:0}
-.kpi .big{font-size:64px;font-weight:500;line-height:1.05;letter-spacing:-.02em}
-.kpi .foot-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.kpi .sub{font-size:var(--t-s);color:var(--muted)}
+/* Hero week numbers */
+.wk{display:flex;gap:36px;margin:0}
+.wk div{display:flex;flex-direction:column-reverse}
+.wk dt{font-size:var(--t-s);color:var(--muted)}
+.wk dd{margin:0;font-size:var(--t-xl);font-weight:500;line-height:1.2}
+/* Today's goal */
+.card-h .dd.range{margin-left:auto;flex:none}
+.gnum{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.gnum .big{font-size:64px;font-weight:500;line-height:1;letter-spacing:-.02em}
+.gnum .of{font-size:18px;color:var(--fg-2)}
+.ticks{display:grid;grid-template-columns:repeat(var(--g),minmax(0,1fr));gap:6px;margin-top:auto}
+.ticks i{height:40px;border-radius:999px;background:var(--card-3);transform-origin:50% 100%}
+.ticks i.on{background:var(--pink)}
+.hbar.zero .nm{color:var(--muted)}
+.hbar.zero .n{color:var(--muted)}
+/* Follow-ups due */
+.follow .card-h{align-items:center;flex-wrap:wrap}
+.badge{display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 10px;border-radius:999px;background:var(--pink-btn);color:#fff;font-weight:500;font-size:var(--t-m)}
+.fu-note{margin:0 0 0 auto;font-size:var(--t-s);color:var(--muted)}
+.frows{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.frow{display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;border-radius:var(--r-in);background:var(--card-2);cursor:pointer;transition:background-color .15s}
+.frow:hover{background:var(--card-3)}
+.frow .fw{flex:1;min-width:0}
+.frow .name{all:unset;cursor:pointer;display:block;font-weight:500;overflow-wrap:anywhere}
+.frow .name:focus-visible{outline:2px solid var(--pink);outline-offset:2px;border-radius:4px}
+.frow .fw span{font-size:var(--t-s);color:var(--muted)}
+.frow .fa{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.fu-empty{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:var(--r-in);background:var(--card-2);color:var(--muted);font-size:var(--t-s)}
+.fu-empty svg.i{width:24px;height:24px;color:var(--s-replied);flex:none}
+.fu-empty b{color:var(--fg);font-weight:500}
 .pinklink{display:inline-flex;align-items:center;gap:10px;border:0;background:transparent;color:var(--pink);font-weight:500;text-align:left;padding:0}
 .pinklink .dotb{width:40px;height:40px;border-radius:50%;background:var(--pink-btn);color:#fff;display:grid;place-items:center}
 .pinklink:hover{color:#ff86b6}
@@ -330,7 +344,7 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
 .done svg.i{animation:pop .26s var(--e-out)}
 .rbtn.done,.copy.done,.rpill.done svg.i,.side-foot .link.done svg.i,.btn.done:not(.pink) svg.i{color:var(--pink)}
 
-@media (max-width:1240px){.cards3{grid-template-columns:repeat(2,minmax(0,1fr))}.cards3 .card:first-child{grid-column:1/-1}}
+@media (max-width:1240px){.cards3{grid-template-columns:repeat(2,minmax(0,1fr))}.cards3 .card:first-child{grid-column:1/-1}.hero .greet{margin-left:0;text-align:left;width:100%}}
 @media (max-width:1180px){
   .lrow{grid-template-columns:minmax(0,1fr) auto auto 40px;grid-template-areas:"who st reach go" "what what what what";gap:14px 16px}
   .lrow .st:empty{display:none}
@@ -349,7 +363,7 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
   .top{padding:10px}
   .top .btn.pink span{display:none}.top .btn.pink{width:44px;padding:0}
   .hero{padding:20px;gap:16px}.date{width:76px;height:76px;font-size:30px}.hero .sep{display:none}.hero .day,.hero .greet b,.hero .greet span{font-size:var(--t-l)}
-  .card{padding:20px}.card-h h2{font-size:var(--t-l)}.kpi .big{font-size:40px}
+  .card{padding:20px}.card-h h2{font-size:var(--t-l)}.gnum .big{font-size:44px}.wk{gap:22px;width:100%}.wk dd{font-size:var(--t-l)}.frow{flex-wrap:wrap}.frow .fa{width:100%;justify-content:flex-start}.fu-note{margin-left:0;width:100%}
   .seg{width:100%;flex-wrap:wrap;border-radius:18px}.seg button{flex:1 1 40%;justify-content:center}
   .tb-right{width:100%}.tb-right .dd{flex:1 1 40%;min-width:0}
   .vhead{padding:20px;gap:16px}.vhead .ccirc{width:64px;height:64px;font-size:22px}.vhead .vf{flex-basis:100%}.vhead h1{font-size:var(--t-l)}
@@ -448,6 +462,16 @@ const nf=new Intl.NumberFormat(), df=new Intl.DateTimeFormat(undefined,{day:"num
 let db=null, localMode=false, canWrite=true, leads=[], view="dashboard", fit="", tradeF="", areaF="", range="week", shown=PAGE, openId=null, lastFocus=null, loaded=false;
 /* Motion state: what the next render should animate */
 let enterView=true, rowAnimFrom=null, changedId=null, segFrom=null, dashNow=null, dashSeen=null, closeAnim=null;
+/* Goal, streak and follow-ups */
+const FOLLOW_DAYS=3;
+let goal=(()=>{try{return +localStorage.getItem("lh-goal")||10}catch{return 10}})();
+const dayKey=d=>`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+const cAt=l=>l.contactedAt||(st(l)!=="new"?l.statusChangedAt:null);
+const lastTouch=l=>l.followUpAt||cAt(l);
+const isDue=l=>st(l)==="contacted"&&lastTouch(l)&&Date.now()-new Date(lastTouch(l))>=FOLLOW_DAYS*864e5;
+const followUps=()=>leads.filter(isDue).sort((a,b)=>new Date(lastTouch(a))-new Date(lastTouch(b)));
+function streak(){const days=new Set(leads.map(cAt).filter(Boolean).map(t=>dayKey(new Date(t))));
+  const d=new Date();if(!days.has(dayKey(d)))d.setDate(d.getDate()-1);let n=0;while(days.has(dayKey(d))){n++;d.setDate(d.getDate()-1)}return n}
 const RM=()=>matchMedia("(prefers-reduced-motion: reduce)").matches, EOUT="cubic-bezier(.16,1,.3,1)", EIN="cubic-bezier(.4,0,1,1)";
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -477,10 +501,9 @@ function tween(el,a,b,suffix=""){if(!el||a===b)return;const t0=performance.now()
 /* Dashboard numbers move from the values you last saw (zero on first load) to the current ones */
 function animateDash(){
   if(view!=="dashboard"||!dashNow||!$("#content .hero"))return;
-  const from=dashSeen||{pct:0,bars:{},counts:{}}, to=dashNow; dashSeen=to; if(RM())return;
-  const C=2*Math.PI*62, arc=$("#ring-arc");
-  if(arc&&from.pct!==to.pct)arc.animate([{strokeDasharray:`${Math.max(.5,C*from.pct).toFixed(1)} ${C.toFixed(1)}`},{strokeDasharray:`${(C*to.pct).toFixed(1)} ${C.toFixed(1)}`}],{duration:800,easing:EOUT});
-  tween($("#ring-pct"),Math.round(from.pct*100),Math.round(to.pct*100),"%");
+  const from=dashSeen||{bars:{},counts:{}}, to=dashNow; dashSeen=to; if(RM())return;
+  const t0=from.counts.today||0; // newly filled goal ticks pop in one after another
+  document.querySelectorAll(".ticks i.on").forEach((el,i)=>{if(i>=t0)el.animate([{transform:"scaleY(.3)",opacity:0},{transform:"none",opacity:1}],{duration:420,delay:150+(i-t0)*70,easing:EOUT,fill:"backwards"})});
   document.querySelectorAll("[data-bar]").forEach(el=>{const a=from.bars[el.dataset.bar]||0,b=to.bars[el.dataset.bar]||0;
     if(b>a)el.animate([{clipPath:`inset(0 ${((1-a/b)*100).toFixed(1)}% 0 0 round 999px)`},{clipPath:"inset(0 0 0 0 round 999px)"}],{duration:700,easing:EOUT})});
   document.querySelectorAll("[data-count]").forEach(el=>tween(el,from.counts[el.dataset.count]||0,to.counts[el.dataset.count]||0));
@@ -524,46 +547,53 @@ const statusDD=(l,id="")=>`<button type="button" class="dd status st-${st(l)}${l
 
 /* Dashboard */
 function renderDashboard(){
-  const now=new Date(), nx=nextLead(null);
-  const strong=leads.filter(l=>fitOf(l)==="Strong fit"), strongDone=strong.filter(l=>st(l)!=="new").length;
-  const waiting=strong.filter(l=>st(l)==="new").length;
+  const now=new Date(), nx=nextLead(null), today=dayKey(now);
+  const strong=leads.filter(l=>fitOf(l)==="Strong fit"), waiting=strong.filter(l=>st(l)==="new").length;
   const hour=now.getHours(), hi=hour<12?"Good morning":hour<18?"Good afternoon":"Good evening";
   const by=Object.fromEntries(STAGES.map(([k])=>[k,leads.filter(l=>st(l)===k).length]));
-  const workedN=leads.length-by.new, wmax=Math.max(1,...STAGES.slice(1).map(([k])=>by[k]));
-  const pct=strong.length?strongDone/strong.length:0, C=2*Math.PI*62;
+  const wmax=Math.max(1,...STAGES.slice(1).map(([k])=>by[k]));
   const bw=k=>by[k]?Math.max(6,Math.round(by[k]/wmax*100)):0;
-  const worked=leads.filter(l=>st(l)!=="new"&&(range==="all"||(l.statusChangedAt&&now-new Date(l.statusChangedAt)<WEEK)));
-  const replies=leads.filter(l=>["replied","audit_sent","call_booked","won"].includes(st(l))&&(range==="all"||(l.statusChangedAt&&now-new Date(l.statusChangedAt)<WEEK)));
-  const rangeDD=(id)=>`<button type="button" class="dd range" id="${id}" data-dd="range" aria-haspopup="listbox" aria-expanded="false" aria-label="Time range"><span class="lbl">${range==="week"?"This week":"All time"}</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button>`;
+  const inWeek=t=>t&&now-new Date(t)<WEEK;
+  const sent=leads.filter(l=>inWeek(cAt(l))).length;
+  const replies=leads.filter(l=>["replied","audit_sent","call_booked","won"].includes(st(l))&&inWeek(l.statusChangedAt)).length;
+  const calls=leads.filter(l=>["call_booked","won"].includes(st(l))&&inWeek(l.statusChangedAt)).length;
+  const done=leads.filter(l=>cAt(l)&&dayKey(new Date(cAt(l)))===today).length, left=Math.max(0,goal-done), strk=streak();
+  const due=followUps(), soon=leads.filter(l=>st(l)==="contacted"&&!isDue(l)).length;
+  dashNow={bars:Object.fromEntries(STAGES.slice(1).map(([k])=>[k,bw(k)])),counts:{sent,replies,calls,waiting,today:done}};
+
   const nextCard=nx?`<article class="card"><div class="card-h"><h2>Next up</h2><button class="go" type="button" data-open="${esc(nx.id)}" aria-label="Open ${esc(nx.name)}">${ic("out")}</button></div>
       <div class="who"><span class="mono" aria-hidden="true">${esc((nx.name||"?").trim()[0].toUpperCase())}</span><div style="min-width:0"><b>${esc(nx.name)}</b><span>${esc(nx.trade)} · ${esc(nx.city)}</span></div></div>
       <div class="chips">${fitPill(nx)}${(nx.reasons||[]).slice(0,2).map(probChip).join("")}</div>
-      <div class="next-actions"><button class="btn pink" type="button" data-open="${esc(nx.id)}">${ic("arrowr")}Open lead</button>${nx.email?`<button class="btn icon" type="button" data-copy="email" data-id="${esc(nx.id)}" aria-label="Copy email">${ic("mail")}</button>`:""}${nx.phone?`<button class="btn icon" type="button" data-copy="phone" data-id="${esc(nx.id)}" aria-label="Copy phone number">${ic("phone")}</button>`:""}</div></article>`
+      <p class="pitchline"><span>Pitch:</span> ${esc(nx.pitch||"Free website audit")}</p>
+      <div class="next-actions"><button class="btn pink" type="button" data-open="${esc(nx.id)}">${ic("arrowr")}Open lead</button>${nx.email?`<button class="btn icon" type="button" data-copy="email" data-id="${esc(nx.id)}" aria-label="Copy email ${esc(nx.email)}" title="Copy ${esc(nx.email)}">${ic("mail")}</button>`:""}${nx.phone?`<button class="btn icon" type="button" data-copy="phone" data-id="${esc(nx.id)}" aria-label="Copy phone number ${esc(nx.phone)}" title="Copy ${esc(nx.phone)}">${ic("phone")}</button>`:""}</div></article>`
     :`<article class="card"><div class="card-h"><h2>Next up</h2></div><div class="empty"><b>Everyone's been contacted</b>New leads appear here after the next Sellbird search.</div></article>`;
-  dashNow={pct,bars:Object.fromEntries(STAGES.slice(1).map(([k])=>[k,bw(k)])),counts:{worked:worked.length,replies:replies.length,waiting}};
+
+  const goalCard=`<article class="card goal"><div class="card-h"><h2>Today's goal</h2><button type="button" class="dd range" id="dd-goal" data-dd="goal" aria-haspopup="listbox" aria-expanded="false" aria-label="Daily goal: ${goal} leads"><span class="lbl">${goal} a day</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button></div>
+      <div class="gnum"><span class="big num" data-count="today">${nf.format(done)}</span><span class="of">of ${goal} contacted</span></div>
+      <div class="ticks" style="--g:${goal}" role="img" aria-label="${done} of ${goal} contacted today">${Array.from({length:goal},(_,i)=>`<i${i<done?' class="on"':""}></i>`).join("")}</div>
+      <p class="cap-line">${done>=goal?`<b>Goal reached.</b> ${done>goal?`${done-goal} over. `:""}`:`<b class="num">${left}</b> to go today. `}${strk>1?`<b class="num">${strk}</b>-day streak.`:strk===1?"Day 1 of a streak.":"Contact one lead to start a streak."}</p></article>`;
+
+  const pipeCard=`<article class="card"><div class="card-h"><h2>Pipeline</h2><button class="go" type="button" data-goto="pipeline" aria-label="Open pipeline">${ic("out")}</button></div>
+      <ul class="hbars">${STAGES.slice(1).map(([k,v])=>`<li class="hbar${by[k]?"":" zero"}" style="--c:var(${SVAR[k]})"><span class="nm">${sic(k)}${v}</span><span class="tr"><i data-bar="${k}" style="width:${bw(k)}%"></i></span><span class="n num">${nf.format(by[k])}</span></li>`).join("")}</ul>
+      <p class="cap-line"><b class="num">${nf.format(by.new)}</b> not contacted yet</p></article>`;
+
+  const fuRows=due.slice(0,5).map(l=>{const days=Math.floor((now-new Date(lastTouch(l)))/864e5);
+    return `<li class="frow" data-row="${esc(l.id)}">${monoT(l,"xs")}<div class="fw"><button class="name" type="button" data-open="${esc(l.id)}">${esc(l.name)}</button><span>${l.followUps?`Followed up ${l.followUps===1?"once":l.followUps+" times"}, `:"Contacted "}${days} days ago · no reply</span></div>
+      <div class="fa">${l.email?`<button class="btn sm" type="button" data-copy="followup" data-id="${esc(l.id)}">${ic("copy")}Copy follow-up</button>`:l.phone?`<button class="btn sm" type="button" data-copy="phone" data-id="${esc(l.id)}">${ic("phone")}Copy phone</button>`:""}
+      <button class="btn sm" type="button" data-followed="${esc(l.id)}">${ic("check")}Followed up</button></div></li>`}).join("");
+  const fuCard=`<article class="card follow"><div class="card-h"><h2>Follow-ups due</h2>${due.length?`<span class="badge num" data-count="due">${due.length}</span>`:""}<p class="fu-note">${soon?`${nf.format(soon)} more due in the next few days`:"Leads show up here 3 days after you contact them"}</p></div>
+      ${due.length?`<ul class="frows">${fuRows}</ul>${due.length>5?`<p class="cap-line"><b class="num">${due.length-5}</b> more due. Oldest first.</p>`:""}`
+        :`<div class="fu-empty">${ic("check-c")}<span><b>Nothing to follow up yet.</b> When someone you contacted hasn't replied after 3 days, they appear here with a ready follow-up email.</span></div>`}</article>`;
+
   return `<section class="panel hero" aria-label="Today">
       <div class="date num" aria-hidden="true">${now.getDate()}</div>
       <div class="day">${now.toLocaleDateString(undefined,{weekday:"short"})},<br>${now.toLocaleDateString(undefined,{month:"long"})}</div>
       <span class="sep" aria-hidden="true"></span>
-      <button class="btn white" type="button" id="show-next" ${nx?"":"disabled"}>Show next lead</button>
+      <dl class="wk" aria-label="This week"><div><dt>Contacted this week</dt><dd class="num" data-count="sent">${nf.format(sent)}</dd></div><div><dt>Replies</dt><dd class="num" data-count="replies">${nf.format(replies)}</dd></div><div><dt>Calls booked</dt><dd class="num" data-count="calls">${nf.format(calls)}</dd></div></dl>
       <div class="greet"><b>${hi}, Nur</b><span><em class="num" data-count="waiting">${nf.format(waiting)}</em> strong ${waiting===1?"lead":"leads"} waiting</span></div>
     </section>
-    <div class="cards3">
-      ${nextCard}
-      <article class="card"><div class="card-h"><h2>Pipeline</h2><button class="go" type="button" data-goto="pipeline" aria-label="Open pipeline">${ic("out")}</button></div>
-        ${workedN?`<ul class="hbars">${STAGES.slice(1).map(([k,v])=>`<li class="hbar" style="--c:var(${SVAR[k]})"><span class="nm">${sic(k)}${v}</span><span class="tr"><i data-bar="${k}" style="width:${bw(k)}%"></i></span><span class="n num">${nf.format(by[k])}</span></li>`).join("")}</ul>`
-          :`<div class="empty" style="padding:18px 0"><b>No leads worked yet</b>Mark a lead contacted and it shows up here.</div>`}
-        <p class="cap-line"><b class="num">${nf.format(by.new)}</b> not contacted yet</p></article>
-      <article class="card"><div class="card-h"><h2>Strong leads contacted</h2><button class="go" type="button" data-goto="leads" data-fit="Strong fit" aria-label="Show strong leads">${ic("out")}</button></div>
-        <div class="ringwrap"><div class="ring" role="img" aria-label="${strongDone} of ${strong.length} strong leads contacted"><svg viewBox="0 0 140 140"><circle cx="70" cy="70" r="62" fill="none" stroke="#2b2b30" stroke-width="12"/>${pct>0?`<circle id="ring-arc" cx="70" cy="70" r="62" fill="none" stroke="#ff5c9d" stroke-width="12" stroke-linecap="round" stroke-dasharray="${(C*pct).toFixed(1)} ${C.toFixed(1)}"/>`:""}</svg><div class="c"><b class="num" id="ring-pct">${Math.round(pct*100)}%</b><span>${strongDone} of ${strong.length}</span></div></div></div>
-        <p class="ring-note">${strongDone?`<b>${strong.length-strongDone}</b> strong leads left to contact.`:nx?`Start with <b>${esc(nx.name)}</b>.`:"No strong leads yet."}</p></article>
-    </div>
-    <div class="cards2">
-      <article class="card kpi"><div class="top-row"><span class="circ" aria-hidden="true">${ic("s-contacted")}</span>${rangeDD("range-1")}</div>
-        <div><p class="klbl">Leads contacted</p><div class="foot-row"><span class="big num" data-count="worked">${nf.format(worked.length)}</span><span class="sub">of ${nf.format(leads.length)} leads</span></div></div></article>
-      <article class="card kpi"><div class="top-row"><span class="circ" aria-hidden="true">${ic("s-replied")}</span>${rangeDD("range-2")}</div>
-        <div><p class="klbl">Replies, audits and calls</p><div class="foot-row"><span class="big num" data-count="replies">${nf.format(replies.length)}</span><button class="pinklink" type="button" data-goto="pipeline"><span class="dotb">${ic("arrowr")}</span>View pipeline</button></div></div></article>
-    </div>`;
+    <div class="cards3">${nextCard}${goalCard}${pipeCard}</div>
+    ${fuCard}`;
 }
 
 /* Lists */
@@ -695,6 +725,7 @@ function renderSheet(focus){
       ${safeUrl(l.contactForm)?`${tile("form","form","md")}<div><a href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">Their contact form</a></div>`:""}
     </div></section>
     ${l.email?`<details class="script" open><summary>${tile("mail","mail")}Ready-to-send email</summary><div class="txt">${esc(emailDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="draft" data-id="${esc(l.id)}">${ic("copy")}Copy email</button><span class="note">Check each point on their site first.</span></div></details>`:""}
+    ${l.email&&st(l)==="contacted"?`<details class="script"${isDue(l)?" open":""}><summary>${tile("undo","mail")}Follow-up email${isDue(l)?' <span class="note">due now</span>':""}</summary><div class="txt">${esc(followUpDraft(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="followup" data-id="${esc(l.id)}">${ic("copy")}Copy follow-up</button><button class="btn sm" type="button" data-followed="${esc(l.id)}">${ic("check")}Mark followed up</button></div></details>`:""}
     ${l.phone?`<details class="script" ${l.email?"":"open"}><summary>${tile("phone","phone")}What to say on the phone</summary><div class="txt">${esc(callScript(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="script" data-id="${esc(l.id)}">${ic("copy")}Copy script</button></div></details>`:""}
     ${st(l)==="new"?`<section class="s-sec"><h3><label for="sheet-status">Status</label></h3>${statusDD(l,"sheet-status")}</section>`:""}
     <section class="s-sec"><h3><label for="notes">Your notes</label></h3><textarea id="notes" placeholder="Called Tuesday, left a voicemail…" ${canWrite?"":"disabled"}>${esc(notesNow)}</textarea><div class="row"><button class="btn sm" type="button" id="save-notes" ${canWrite?"":"disabled"}>Save notes</button><span class="note" id="notes-state" role="status"></span></div></section>
@@ -736,13 +767,41 @@ function localEdits(){try{return JSON.parse(localStorage.getItem("lh-edits")||"{
 function saveLocal(id,p){const a=localEdits();a[id]={...(a[id]||{}),...p};try{localStorage.setItem("lh-edits",JSON.stringify(a));return true}catch{return false}}
 async function setStage(id,stage,opts={}){
   const l=leads.find(x=>x.id===id); if(!l||st(l)===stage)return false;
-  const prev=st(l), patch={status:stage,statusChangedAt:new Date().toISOString()};
+  const prev=st(l), nowIso=new Date().toISOString(), patch={status:stage,statusChangedAt:nowIso};
+  if(prev==="new")patch.contactedAt=nowIso; else if(stage==="new")patch.contactedAt=null;
   Object.assign(l,patch); changedId=id; render(); changedId=null;
   const undo=opts.silent?null:()=>setStage(id,prev,{silent:true}).then(ok=>ok&&toast(`${l.name}: back to ${STAGE[prev]}`));
   if(localMode){if(saveLocal(id,patch)){if(!opts.silent)toast(`${l.name}: ${STAGE[stage]}`,undo);return true}toast("Couldn't save in this browser");return false}
   if(!db||!canWrite){l.status=prev;render();toast("You can view these leads but not change them");return false}
   try{await db.collection("leads").doc(id).update(patch);if(!opts.silent)toast(`${l.name}: ${STAGE[stage]}`,undo);return true}
   catch(e){l.status=prev;render();if(e&&e.code==="invalid_argument")canWrite=false;toast("Couldn't save the status. Check your connection and try again");return false}
+}
+async function savePatch(id,patch){
+  if(localMode)return saveLocal(id,patch);
+  if(!db||!canWrite)return false;
+  try{await db.collection("leads").doc(id).update(patch);return true}catch{return false}
+}
+async function markFollowed(id,btn){
+  const l=leads.find(x=>x.id===id); if(!l)return;
+  const prev={followUpAt:l.followUpAt||null,followUps:l.followUps||0}, patch={followUpAt:new Date().toISOString(),followUps:(l.followUps||0)+1};
+  const row=btn&&btn.closest(".frow");
+  const apply=()=>{Object.assign(l,patch);render()};
+  if(row&&!RM())row.animate([{opacity:1,transform:"none"},{opacity:0,transform:"translateX(24px)"}],{duration:200,easing:EIN,fill:"forwards"}).onfinish=apply; else apply();
+  if(await savePatch(id,patch))toast(`${l.name}: followed up`,async()=>{Object.assign(l,prev);render();await savePatch(id,prev)});
+  else{Object.assign(l,prev);render();toast("Couldn't save. Try again")}
+}
+function followUpDraft(l){
+  const first=(l.contactName||"").split(" ")[0];
+  return `Subject: Re: Quick idea for the ${l.name} website
+
+${first?`Hi ${first},`:"Hi there,"}
+
+Just following up on my note about ${l.domain||"your website"}. The free audit is still on offer: the top 3 fixes for speed, Google visibility and getting more calls and bookings.
+
+Want me to send it over?
+
+Nur
+NurAndCode · nurandcode.com`;
 }
 async function saveNotes(id){
   const l=leads.find(x=>x.id===id), val=$("#notes").value, out=$("#notes-state"); if(!l)return;
@@ -779,6 +838,7 @@ const pop=$("#pop"); let ddBtn=null, ddOpts=[], ddActive=0;
 function ddOptions(btn){
   const kind=btn.dataset.dd;
   if(kind==="status"){const l=leads.find(x=>x.id===btn.dataset.id);return STAGES.map(([k,v])=>({value:k,label:v,cls:"st-"+k,icon:SICON[k],selected:l&&st(l)===k}))}
+  if(kind==="goal")return [5,10,15,20,30].map(n=>({value:n,label:`${n} a day`,selected:goal===n}));
   if(kind==="range")return [{value:"week",label:"This week",selected:range==="week"},{value:"all",label:"All time",selected:range==="all"}];
   const key=kind==="trade"?"trade":"area", cur=kind==="trade"?tradeF:areaF;
   const base=leads.filter(l=>inView(l)&&(kind==="trade"?(!areaF||l.area===areaF):(!tradeF||l.trade===tradeF)));
@@ -804,6 +864,7 @@ function ddClose(refocus=true){if(!ddBtn)return;const b=ddBtn;ddBtn=null;b.setAt
 function ddPick(i){
   const o=ddOpts[i], b=ddBtn; if(!o||!b)return; const kind=b.dataset.dd, id=b.dataset.id, bid=b.id; ddClose();
   if(kind==="status")setStage(id,o.value);
+  else if(kind==="goal"){goal=+o.value;try{localStorage.setItem("lh-goal",goal)}catch{}render();$("#dd-goal")?.focus()}
   else{if(kind==="trade")tradeF=o.value;else if(kind==="area")areaF=o.value;else range=o.value;shown=PAGE;if(kind!=="range")rowAnimFrom=0;render();(bid&&document.getElementById(bid))?.focus()}
 }
 
@@ -834,9 +895,10 @@ document.addEventListener("click",e=>{
     if(t.dataset.fit!==undefined&&t.closest(".seg")){const pr=t.closest(".seg").querySelector('[aria-pressed="true"]');if(pr===t)return;
       segFrom=pr?{r:pr.getBoundingClientRect(),fit:pr.dataset.fit}:null;fit=t.dataset.fit;shown=PAGE;rowAnimFrom=0;render();return}
     if(t.dataset.goto){if(t.dataset.fit)fit=t.dataset.fit;setView(t.dataset.goto);return}
+    if(t.dataset.followed)return markFollowed(t.dataset.followed,t);
     if(t.dataset.open)return openSheet(t.dataset.open);
     if(t.dataset.copy){const l=leads.find(x=>x.id===t.dataset.id);if(!l)return;const k=t.dataset.copy;
-      if(k==="draft")return copy(emailDraft(l),"Email",t);if(k==="script")return copy(callScript(l),"Phone script",t);return copy(l[k],k==="email"?"Email address":"Phone number",t)}
+      if(k==="draft")return copy(emailDraft(l),"Email",t);if(k==="followup")return copy(followUpDraft(l),"Follow-up email",t);if(k==="script")return copy(callScript(l),"Phone script",t);return copy(l[k],k==="email"?"Email address":"Phone number",t)}
     return;
   }
   if(e.target.closest("a"))return;
