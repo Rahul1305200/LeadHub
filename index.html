@@ -140,19 +140,21 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .pinklink .dotb{width:40px;height:40px;border-radius:50%;background:var(--pink-btn);color:#fff;display:grid;place-items:center}
 .pinklink:hover{color:#ff86b6}
 
-/* List pages */
-.page-h{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;padding:6px 6px 0}
-.page-h h1{margin:0;font-size:var(--t-xl);font-weight:500;letter-spacing:-.01em;line-height:1.2}
-.page-h p{margin:6px 0 0;color:var(--muted);max-width:72ch}
-.page-h p b{color:var(--fg-2);font-weight:500}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+/* List pages: same header panel as the dashboard greeting */
+.vhead{display:flex;align-items:center;gap:20px 24px;flex-wrap:wrap;padding:22px 24px}
+.vhead .ccirc{width:88px;height:88px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;font-size:30px;font-weight:500;flex:none}
+.vhead .vt{min-width:0}
+.vhead h1{margin:0;font-size:var(--t-xl);font-weight:500;letter-spacing:-.01em;line-height:1.2}
+.vhead .vt p{margin:4px 0 0;color:var(--muted)}
+.vhead .vf{flex:1 1 640px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;min-width:0}
+.vhead .seg{background:var(--card)}
 .seg{display:inline-flex;background:var(--panel);border-radius:999px;padding:4px;gap:2px}
 .seg button{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--fg-2);font-weight:500;transition:background-color .15s,color .15s}
 .seg button:hover{color:var(--fg)}
 .seg button[aria-pressed="true"]{background:#fff;color:#0d0d0f}
 .seg .d{width:8px;height:8px;border-radius:50%;background:var(--fd)}
 .seg b{font-weight:700}
-.tb-right{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.tb-right{display:flex;gap:8px;flex-wrap:wrap}
 .fit-strong{--fd:var(--pink)} .fit-good{--fd:#ffb3cf} .fit-maybe{--fd:var(--muted)}
 
 /* Custom dropdown */
@@ -186,33 +188,41 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .k-booking{--ib:var(--k-booking)}.k-google{--ib:var(--k-google)}.k-stale{--ib:var(--k-stale)}.k-thin{--ib:var(--k-thin)}.k-builder{--ib:var(--k-builder)}.k-ads{--ib:var(--k-ads)}.k-nosite{--ib:var(--k-nosite)}.k-other{--ib:var(--fg-2)}
 .k-mail{--ib:var(--k-mail)}.k-phone{--ib:var(--k-phone)}.k-form{--ib:var(--k-form)}.k-link{--ib:var(--k-link)}.k-user{--ib:var(--k-user)}.k-bulb{--ib:var(--k-bulb)}
 
-/* Lead list */
-.list{background:var(--panel);border-radius:var(--r-panel);padding:8px}
-.cols{--cols:minmax(190px,1.05fr) minmax(250px,1.4fr) minmax(170px,.9fr) minmax(220px,1fr) 170px}
-.lhead{display:grid;grid-template-columns:var(--cols);gap:20px;padding:14px 18px 8px;font-size:var(--t-xs);color:var(--muted);font-weight:500}
-.group{display:flex;align-items:center;gap:10px;padding:16px 18px 8px;font-size:var(--t-s);color:var(--muted)}
-.group .fitpill{font-size:var(--t-s)}
-.lrow{display:grid;grid-template-columns:var(--cols);gap:20px;align-items:center;padding:14px 18px;border-radius:var(--r-in);cursor:pointer;transition:background-color .12s}
-.lrow+.lrow{box-shadow:inset 0 1px 0 var(--line)}
-.lrow:hover{background:var(--card);box-shadow:none}
-.lrow:hover+.lrow{box-shadow:none}
-.biz{min-width:0}
-.biz .name{all:unset;cursor:pointer;font-weight:500;font-size:16px;line-height:1.35;overflow-wrap:anywhere}
-.biz .name:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:4px}
-.biz .sub{font-size:var(--t-s);color:var(--muted);margin-top:2px}
-.biz .agency{display:inline-block;margin-top:4px;font-size:var(--t-xs);color:var(--k-stale)}
-.stagew{display:inline-flex;align-items:center;gap:5px;margin-left:8px;font-size:var(--t-xs);font-weight:500;color:var(--sc);vertical-align:2px}
-.stagew svg.i{width:14px;height:14px}
-.lrow.worked .biz .name,.lrow.worked .probs,.lrow.worked .pitch{color:var(--muted)}
-.probs{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none;font-size:var(--t-s);color:var(--fg-2)}
-.probs li{display:flex;align-items:center;gap:10px;min-width:0}
-.probs .more{color:var(--muted);font-size:var(--t-xs);white-space:nowrap}
-.pitch{display:flex;gap:10px;align-items:center;font-size:var(--t-s);color:var(--fg-2);min-width:0}
-.reach{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:var(--t-s)}
-.reach .val{display:flex;align-items:center;gap:10px;min-width:0}
-.reach .val span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.reach small{font-size:var(--t-xs);color:var(--muted)}
-.reach a{color:var(--fg);text-underline-offset:3px;text-decoration-color:var(--pink-line)}
+/* Lead list: one panel per fit group, each lead a card like the dashboard's */
+.gpanel{display:flex;flex-direction:column;gap:18px}
+.ghead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:2px 4px 0}
+.ghead h2{margin:0;font-size:var(--t-xl);font-weight:500;letter-spacing:-.01em;line-height:1.2;display:flex;align-items:center;gap:12px}
+.ghead h2 .d{width:10px;height:10px;border-radius:50%;background:var(--fd);flex:none}
+.ghead .gn{font-size:var(--t-xl);font-weight:500;color:var(--muted);line-height:1.2}
+.ghead p{margin:0 0 0 auto;color:var(--muted);font-size:var(--t-s)}
+.rows{display:flex;flex-direction:column;gap:8px}
+.rows.call{--reach:200px}
+.lrow{display:grid;grid-template-columns:minmax(220px,1.1fr) minmax(280px,1.8fr) 150px var(--reach,96px) 40px;grid-template-areas:"who what st reach go";gap:20px;align-items:center;padding:14px 14px 14px 14px;background:var(--card);border-radius:var(--r-card);cursor:pointer;transition:background-color .15s}
+.lrow:hover{background:var(--card-2)}
+.lrow .who{grid-area:who}.lrow .what{grid-area:what}.lrow .reach{grid-area:reach}.lrow .st{grid-area:st}.lrow .go{grid-area:go}
+.mono.sm{width:48px;height:48px;border-radius:14px;font-size:20px}
+.mono.xs{width:34px;height:34px;border-radius:10px;font-size:15px}
+.mono.plain{background:var(--card-3);color:var(--fg-2)}
+.who .name{all:unset;cursor:pointer;display:block;font-size:16px;font-weight:500;line-height:1.35;overflow-wrap:anywhere}
+.who .name:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:4px}
+.lrow.worked .who .name{color:var(--fg-2)}
+.what{display:flex;flex-direction:column;gap:8px;min-width:0}
+.lrow .chip{background:var(--card-2)}
+.lrow:hover .chip{background:var(--card-3)}
+.chip.more{padding:4px 10px;color:var(--muted)}
+.chip.warn{--ib:var(--k-stale);color:var(--k-stale)}
+.pitchline{margin:0;font-size:var(--t-s);color:var(--fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pitchline span{color:var(--muted)}
+.reach{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+.reach .none{font-size:var(--t-xs);color:var(--muted);white-space:nowrap}
+.rbtn{--ib:var(--fg-2);width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:transparent;display:grid;place-items:center;flex:none;color:var(--ib);text-decoration:none;transition:background-color .15s,border-color .15s}
+.rbtn:hover{background:var(--card-3);border-color:var(--card-3)}
+.rpill{--ib:var(--k-phone);display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px 0 12px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--fg);font-weight:500;font-size:var(--t-s);white-space:nowrap;transition:background-color .15s,border-color .15s}
+.rpill svg.i{color:var(--ib)}
+.rpill:hover{background:var(--card-3);border-color:var(--card-3)}
+.lrow .st .dd.status{min-height:40px}
+.lrow .go{width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:var(--fg);display:grid;place-items:center}
+.lrow:hover .go{background:var(--card-3)}
 .copy{border:0;background:var(--card-2);border-radius:10px;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--fg-2);margin-left:auto;transition:background-color .15s,color .15s}
 .copy:hover{background:var(--card-3);color:var(--fg)}
 .copy svg.i{width:15px;height:15px}
@@ -220,31 +230,30 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .fitpill.fit-strong{background:var(--pink-btn);color:#fff}
 .fitpill.fit-good{background:var(--pink-soft);color:#ffb3cf;box-shadow:inset 0 0 0 1px var(--pink-line)}
 .fitpill.fit-maybe{background:var(--card-2);color:var(--fg-2)}
-.more-btn{display:block;width:100%;border:0;background:transparent;border-radius:var(--r-in);min-height:52px;font-weight:500;color:var(--fg-2);margin-top:4px}
-.more-btn:hover{background:var(--card);color:var(--fg)}
+.more-btn{align-self:center;margin-top:4px}
 .empty{padding:56px 20px;text-align:center;color:var(--muted)}
 .empty b{display:block;color:var(--fg);font-weight:500;font-size:18px;margin-bottom:4px}
 
 /* Pipeline */
 .board-wrap{overflow-x:auto;padding-bottom:8px}
 .board-wrap.more-right{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent)}
-.board{display:grid;grid-template-columns:minmax(230px,1.2fr) repeat(6,minmax(200px,1fr));gap:12px;min-width:min-content}
-.col{background:var(--panel);border-radius:var(--r-card);padding:12px;display:flex;flex-direction:column;gap:10px;align-self:start;transition:box-shadow .15s}
+.board{display:grid;grid-template-columns:repeat(7,minmax(250px,1fr));gap:12px;min-width:min-content}
+.col{background:var(--panel);border-radius:var(--r-panel);padding:14px;display:flex;flex-direction:column;gap:12px;align-self:start;transition:box-shadow .15s}
 .col.drop{box-shadow:inset 0 0 0 2px var(--pink)}
-.col h3{margin:0;padding:6px 8px 10px;font-size:var(--t-m);font-weight:500;display:flex;align-items:center;gap:10px;white-space:nowrap;color:var(--fg)}
-.col h3 .ib{--ib:var(--sc)}
+.col h3{margin:0;padding:8px 8px 6px;font-size:17px;font-weight:500;display:flex;align-items:center;gap:12px;white-space:nowrap;color:var(--fg)}
+.col h3 .ib{--ib:var(--sc);width:36px;height:36px;border-radius:50%}
+.col h3 .ib svg.i{width:19px;height:19px}
 .col h3 .cl{min-width:0;overflow:hidden;text-overflow:ellipsis}
-.col h3 .num{margin-left:auto;color:var(--muted)}
+.col h3 .num{margin-left:auto;color:var(--muted);font-weight:500}
 .col-list{display:flex;flex-direction:column;gap:8px;max-height:68vh;overflow-y:auto;overscroll-behavior:contain}
-.bcard{background:var(--card);border-radius:var(--r-in);padding:14px;display:flex;flex-direction:column;gap:6px;position:relative;cursor:pointer;transition:background-color .15s,transform .15s}
+.bcard{background:var(--card);border-radius:var(--r-in);padding:12px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:background-color .15s,transform .15s}
 .bcard:hover{background:var(--card-2);transform:translateY(-2px)}
 .bcard[draggable="true"]{cursor:grab}
-.bcard .name{all:unset;cursor:pointer;font-weight:500;overflow-wrap:anywhere}
+.bcard>div{min-width:0}
+.bcard .name{all:unset;cursor:pointer;display:block;font-weight:500;line-height:1.35;overflow-wrap:anywhere}
 .bcard .name:focus-visible{outline:2px solid var(--pink);outline-offset:2px;border-radius:4px}
-.bcard .sub{font-size:var(--t-s);color:var(--muted)}
-.bcard .sub .loc{white-space:nowrap}
-.bcard .fitpill{align-self:flex-start}
-.empty-col{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:var(--t-s);color:var(--muted);text-align:center;padding:22px 10px;border:1px dashed var(--line-2);border-radius:var(--r-in)}
+.bcard .sub{font-size:var(--t-xs);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.empty-col{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:var(--t-s);color:var(--muted);text-align:center;padding:26px 10px;border-radius:var(--r-in);background:var(--card)}
 
 /* Lead panel */
 .scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:20;animation:fade .18s ease-out}
@@ -293,10 +302,8 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
 
 @media (max-width:1240px){.cards3{grid-template-columns:repeat(2,minmax(0,1fr))}.cards3 .card:first-child{grid-column:1/-1}}
 @media (max-width:1180px){
-  .lhead{display:none}
-  .lrow{grid-template-columns:minmax(0,1fr) 170px;grid-template-areas:"biz status" "probs probs" "pitch pitch" "reach reach";gap:10px 16px}
-  .lrow .biz{grid-area:biz}.lrow .probs{grid-area:probs}.lrow .pitch{grid-area:pitch}.lrow .status{grid-area:status}
-  .lrow .reach{grid-area:reach;flex-direction:row;flex-wrap:wrap;gap:8px 20px}.lrow .reach .copy{margin-left:0}
+  .lrow{grid-template-columns:minmax(0,1fr) auto auto 40px;grid-template-areas:"who st reach go" "what what what what";gap:14px 16px}
+  .lrow .st:empty{display:none}
 }
 @media (max-width:900px){
   .app{grid-template-columns:minmax(0,1fr)}
@@ -315,7 +322,12 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
   .card{padding:20px}.card-h h2{font-size:var(--t-l)}.kpi .big{font-size:40px}
   .seg{width:100%;flex-wrap:wrap;border-radius:18px}.seg button{flex:1 1 40%;justify-content:center}
   .tb-right{width:100%}.tb-right .dd{flex:1 1 40%;min-width:0}
-  .lrow{grid-template-columns:minmax(0,1fr);grid-template-areas:"biz" "probs" "pitch" "reach" "status"}
+  .vhead{padding:20px;gap:16px}.vhead .ccirc{width:64px;height:64px;font-size:22px}.vhead .vf{flex-basis:100%}.vhead h1{font-size:var(--t-l)}
+  .ghead h2,.ghead .gn{font-size:var(--t-l)}.ghead p{margin-left:0;width:100%}
+  .panel.gpanel{padding:14px}
+  .lrow{grid-template-columns:minmax(0,1fr) 40px;grid-template-areas:"who go" "what what" "reach st";gap:12px}
+  .lrow .reach{justify-content:flex-start}
+  .lrow .st:empty{display:block}
   .sheet{top:0;right:0;bottom:0;width:100%;border-radius:0}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
@@ -444,13 +456,16 @@ function nextLead(afterId){
 }
 
 /* Shared bits */
+const monoT=(l,size)=>`<span class="mono ${size} ${fitOf(l)==="Strong fit"?"":"plain"}" aria-hidden="true">${esc((l.name||"?").trim()[0].toUpperCase())}</span>`;
+const probChip=r=>`<span class="chip k-${probKind(r)}">${ic(KIND_ICON[probKind(r)])}${esc(r)}</span>`;
 function reachHTML(l){
+  const id=esc(l.id), form=safeUrl(l.contactForm);
+  if(view==="no-website"&&l.phone)return `<button class="rpill" type="button" data-copy="phone" data-id="${id}" aria-label="Copy phone number ${esc(l.phone)}">${ic("phone")}<span class="num">${esc(l.phone)}</span></button>`;
   const out=[];
-  if(l.email)out.push(`<div class="val">${tile("mail","mail")}<span title="${esc(l.email)}">${esc(l.email)}</span><button class="copy" type="button" data-copy="email" data-id="${esc(l.id)}" aria-label="Copy email for ${esc(l.name)}">${ic("copy")}</button></div>`);
-  if(l.phone)out.push(`<div class="val">${tile("phone","phone")}<span>${esc(l.phone)}</span><button class="copy" type="button" data-copy="phone" data-id="${esc(l.id)}" aria-label="Copy phone for ${esc(l.name)}">${ic("copy")}</button></div>`);
-  if(!out.length&&safeUrl(l.contactForm))out.push(`<div class="val">${tile("form","form")}<a href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">Contact form</a></div>`);
-  if(!out.length)out.push(`<small>Owner's email coming soon</small>`);
-  return out.join("");
+  if(l.email)out.push(`<button class="rbtn k-mail" type="button" data-copy="email" data-id="${id}" title="Copy ${esc(l.email)}" aria-label="Copy email ${esc(l.email)}">${ic("mail")}</button>`);
+  if(l.phone)out.push(`<button class="rbtn k-phone" type="button" data-copy="phone" data-id="${id}" title="Copy ${esc(l.phone)}" aria-label="Copy phone number ${esc(l.phone)}">${ic("phone")}</button>`);
+  if(!l.email&&form)out.push(`<a class="rbtn k-form" href="${esc(form)}" target="_blank" rel="noopener noreferrer" title="Open their contact form" aria-label="Open contact form for ${esc(l.name)}">${ic("form")}</a>`);
+  return out.join("")||`<span class="none">No contact yet</span>`;
 }
 const statusDD=(l,id="")=>`<button type="button" class="dd status st-${st(l)}" ${id?`id="${id}" `:""}data-dd="status" data-id="${esc(l.id)}" aria-haspopup="listbox" aria-expanded="false" aria-label="Status of ${esc(l.name)}: ${STAGE[st(l)]}" ${canWrite?"":"disabled"}>${sic(st(l))}<span class="lbl">${STAGE[st(l)]}</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button>`;
 
@@ -468,7 +483,7 @@ function renderDashboard(){
   const rangeDD=(id)=>`<button type="button" class="dd range" id="${id}" data-dd="range" aria-haspopup="listbox" aria-expanded="false" aria-label="Time range"><span class="lbl">${range==="week"?"This week":"All time"}</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button>`;
   const nextCard=nx?`<article class="card"><div class="card-h"><h2>Next up</h2><button class="go" type="button" data-open="${esc(nx.id)}" aria-label="Open ${esc(nx.name)}">${ic("out")}</button></div>
       <div class="who"><span class="mono" aria-hidden="true">${esc((nx.name||"?").trim()[0].toUpperCase())}</span><div style="min-width:0"><b>${esc(nx.name)}</b><span>${esc(nx.trade)} · ${esc(nx.city)}</span></div></div>
-      <div class="chips">${fitPill(nx)}${(nx.reasons||[]).slice(0,2).map(r=>`<span class="chip k-${probKind(r)}" style="--ib:var(--k-${probKind(r)})">${ic(KIND_ICON[probKind(r)])}${esc(r)}</span>`).join("")}</div>
+      <div class="chips">${fitPill(nx)}${(nx.reasons||[]).slice(0,2).map(probChip).join("")}</div>
       <div class="next-actions"><button class="btn pink" type="button" data-open="${esc(nx.id)}">${ic("arrowr")}Open lead</button>${nx.email?`<button class="btn icon" type="button" data-copy="email" data-id="${esc(nx.id)}" aria-label="Copy email">${ic("mail")}</button>`:""}${nx.phone?`<button class="btn icon" type="button" data-copy="phone" data-id="${esc(nx.id)}" aria-label="Copy phone number">${ic("phone")}</button>`:""}</div></article>`
     :`<article class="card"><div class="card-h"><h2>Next up</h2></div><div class="empty"><b>Everyone's been contacted</b>New leads appear here after the next Sellbird search.</div></article>`;
   return `<section class="panel hero" aria-label="Today">
@@ -502,43 +517,46 @@ function segHTML(){
   const items=[["","All",base.length,""],...FITS.map(([f,c])=>[f,f.replace(" fit",""),base.filter(l=>fitOf(l)===f).length,c])];
   return `<div class="seg" role="group" aria-label="Show by fit">${items.map(([f,label,n,c])=>`<button type="button" data-fit="${f}" aria-pressed="${fit===f}" class="${c}">${c?`<span class="d" aria-hidden="true"></span>`:""}${label} <b class="num">${nf.format(n)}</b></button>`).join("")}</div>`;
 }
-function toolbarHTML(){return `<section class="toolbar" aria-label="Filter leads">${segHTML()}<div class="tb-right">
+const VHEAD={leads:["Leads","Website problems you can fix"],"no-website":["No website","Call them and offer a new site"],pipeline:["Pipeline","Drag a card to change its status"]};
+function vheadHTML(){
+  const [t,sub]=VHEAD[view], n=leads.filter(inView).length;
+  return `<section class="panel vhead" aria-label="${t}"><div class="ccirc num" aria-hidden="true">${nf.format(n)}</div><div class="vt"><h1>${t}</h1><p>${sub}</p></div>
+  <div class="vf">${segHTML()}<div class="tb-right">
   <button class="dd filter" type="button" id="dd-trade" data-dd="trade" aria-haspopup="listbox" aria-expanded="false" aria-label="Filter by trade"><span class="lbl">${esc(tradeF||"All trades")}</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button>
-  <button class="dd filter" type="button" id="dd-area" data-dd="area" aria-haspopup="listbox" aria-expanded="false" aria-label="Filter by area"><span class="lbl">${esc(areaF||"All areas")}</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button></div></section>`}
+  <button class="dd filter" type="button" id="dd-area" data-dd="area" aria-haspopup="listbox" aria-expanded="false" aria-label="Filter by area"><span class="lbl">${esc(areaF||"All areas")}</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button></div></div></section>`;
+}
 function rowHTML(l){
-  const r=l.reasons||[], w=st(l)!=="new";
-  return `<div class="lrow ${w?"worked st-"+st(l):""}" data-row="${esc(l.id)}">
-    <div class="biz"><button class="name" type="button" data-open="${esc(l.id)}">${esc(l.name)}</button><div class="sub">${esc(l.trade)} · ${esc(l.city)}</div>${l.caution?`<span class="agency">Already has an agency</span>`:""}</div>
-    <ul class="probs" aria-label="Problems">${r.slice(0,2).map((p,i)=>`<li>${probTile(p)}<span>${esc(p)}${i===1&&r.length>2?` <span class="more">+${r.length-2} more</span>`:""}</span></li>`).join("")||"<li class='more'>–</li>"}</ul>
-    <div class="pitch">${tile("bulb","bulb")}<span>${esc(l.pitch||"Free website audit")}</span></div>
+  const r=l.reasons||[], w=st(l)!=="new", id=esc(l.id);
+  const chips=r.slice(0,2).map(probChip).join("")+(r.length>2?`<span class="chip more">+${r.length-2} more</span>`:"")+(l.caution?`<span class="chip warn">${ic("warn")}Has an agency</span>`:"");
+  return `<div class="lrow${w?" worked":""}" data-row="${id}">
+    <div class="who">${monoT(l,"sm")}<div style="min-width:0"><button class="name" type="button" data-open="${id}">${esc(l.name)}</button><span>${esc(l.trade)} · ${esc(l.city)}</span></div></div>
+    <div class="what">${chips?`<div class="chips">${chips}</div>`:""}<p class="pitchline"><span>Pitch:</span> ${esc(l.pitch||"Free website audit")}</p></div>
     <div class="reach">${reachHTML(l)}</div>
-    <div class="status">${statusDD(l)}</div>
+    <div class="st">${w?statusDD(l):""}</div>
+    <button class="go" type="button" data-open="${id}" tabindex="-1" aria-label="Open ${esc(l.name)}">${ic("out")}</button>
   </div>`;
 }
 function renderList(){
-  const list=filtered(), mine=leads.filter(inView), strong=mine.filter(l=>fitOf(l)==="Strong fit").length, md=mine.filter(l=>st(l)!=="new").length;
-  const head=view==="leads"
-    ?`<h1>Leads</h1><p><b>${nf.format(mine.length)}</b> local businesses with website problems you can fix. <b>${nf.format(strong)}</b> are a strong fit.${md?` You've contacted <b>${nf.format(md)}</b>.`:""}</p>`
-    :`<h1>No website</h1><p><b>${nf.format(mine.length)}</b> businesses with no website, only a phone number. Call them and offer a new site.${md?` You've contacted <b>${nf.format(md)}</b>.`:""}</p>`;
+  const list=filtered();
   let body;
-  if(!list.length)body=`<div class="list"><div class="empty"><b>No leads match</b>Choose "All" or clear the search.</div></div>`;
+  if(!list.length)body=`<section class="panel"><div class="empty"><b>No leads match</b>Choose "All" or clear the search.</div></section>`;
   else{
-    let left=shown, html="";
+    let left=shown; body="";
     for(const [f,c,desc] of FITS){
       const g=list.filter(l=>fitOf(l)===f); if(!g.length||left<=0)continue;
       const part=g.slice(0,left); left-=part.length;
-      html+=`<div class="group"><span class="fitpill ${c}">${f}</span><span class="num">${nf.format(g.length)}</span><span>· ${desc}</span></div>${part.map(rowHTML).join("")}`;
+      body+=`<section class="panel gpanel ${c}" aria-label="${f}"><div class="ghead"><h2><span class="d" aria-hidden="true"></span>${f}</h2><span class="gn num">${nf.format(g.length)}</span><p>${desc}</p></div><div class="rows${view==="no-website"?" call":""}">${part.map(rowHTML).join("")}</div></section>`;
     }
-    body=`<div class="list cols"><div class="lhead" aria-hidden="true"><span>Business</span><span>What's wrong with their site</span><span>What to pitch</span><span>How to reach them</span><span>Status</span></div>${html}${list.length>shown?`<button class="more-btn" type="button" id="show-more">Show ${Math.min(PAGE,list.length-shown)} more · ${nf.format(list.length-shown)} left</button>`:""}</div>`;
+    if(list.length>shown)body+=`<button class="btn more-btn" type="button" id="show-more">Show ${Math.min(PAGE,list.length-shown)} more · ${nf.format(list.length-shown)} left</button>`;
   }
-  return `<div class="page-h"><div>${head}</div></div>${toolbarHTML()}${body}`;
+  return vheadHTML()+body;
 }
 function renderBoard(){
   const list=filtered();
-  return `<div class="page-h"><div><h1>Pipeline</h1><p>Every lead by status. Drag a card to move it, or open it and use Mark contacted.</p></div></div>${toolbarHTML()}
+  return `${vheadHTML()}
   <div class="board-wrap"><div class="board">${STAGES.map(([k,v])=>{const items=list.filter(l=>st(l)===k);
     return `<section class="col st-${k}" data-stage="${k}" aria-label="${v}"><h3><span class="ib" aria-hidden="true">${ic(SICON[k])}</span><span class="cl">${v}</span><span class="num">${nf.format(items.length)}</span></h3><div class="col-list">
-      ${items.length?items.slice(0,60).map(l=>`<article class="bcard" draggable="${canWrite}" data-card="${esc(l.id)}" data-row="${esc(l.id)}"><button class="name" type="button" data-open="${esc(l.id)}">${esc(l.name)}</button><div class="sub">${esc(l.trade)} · <span class="loc">${esc(l.city)}</span></div>${fitPill(l)}</article>`).join(""):`<div class="empty-col">${ic("tray")}<span>${k==="new"?"Nothing left here":"Drag a lead here"}</span></div>`}
+      ${items.length?items.slice(0,60).map(l=>`<article class="bcard" draggable="${canWrite}" data-card="${esc(l.id)}" data-row="${esc(l.id)}">${monoT(l,"xs")}<div><button class="name" type="button" data-open="${esc(l.id)}">${esc(l.name)}</button><div class="sub">${esc(l.trade)} · ${esc(l.city)}</div></div></article>`).join(""):`<div class="empty-col">${ic("tray")}<span>${k==="new"?"Nothing left here":"Drag a lead here"}</span></div>`}
       ${items.length>60?`<div class="empty-col">+${nf.format(items.length-60)} more in Leads</div>`:""}</div></section>`}).join("")}</div></div>`;
 }
 
