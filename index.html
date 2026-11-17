@@ -25,7 +25,7 @@
   --k-mail:#86adff; --k-phone:#7ad98a; --k-form:#a9b8c8; --k-link:#86adff; --k-user:#c4c4cb; --k-bulb:#ffd166;
   --s-new:#8c8c96; --s-contacted:#86adff; --s-replied:#5fd3c6; --s-audit:#f0be6c; --s-call:#7ad98a; --s-won:#ff5c9d; --s-lost:#ff8a8a;
   --r-panel:24px; --r-card:20px; --r-in:14px;
-  --t-xs:12.5px; --t-s:13.5px; --t-m:15px; --t-l:22px; --t-xl:28px; --t-xxl:44px;
+  --t-xs:13px; --t-s:14.5px; --t-m:15px; --t-l:22px; --t-xl:28px; --t-xxl:44px;
   --shadow:0 20px 50px rgba(0,0,0,.45);
   --font:"Satoshi",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --e-out:cubic-bezier(.16,1,.3,1); --e-in:cubic-bezier(.4,0,1,1); --mv:1;
@@ -297,10 +297,17 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .pitchbox b{display:block;font-size:18px;font-weight:500}
 .pitchbox span{font-size:var(--t-s);color:var(--muted)}
 .caution{display:flex;gap:10px;align-items:center;background:var(--card);border-radius:var(--r-in);padding:12px 14px;color:var(--k-stale);font-size:var(--t-s)}
-.dlist{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
-.dlist li{display:flex;gap:12px;align-items:center;color:var(--fg-2)}
-.kv{display:grid;grid-template-columns:36px minmax(0,1fr);gap:10px 12px;align-items:center}
-.kv div{display:flex;gap:8px;align-items:center;flex-wrap:wrap;min-width:0;overflow-wrap:anywhere}
+.dlist{display:flex;flex-direction:column;gap:18px;margin:0;padding:0;list-style:none}
+.dlist li{display:flex;gap:14px;align-items:flex-start}
+.dlist li>div{min-width:0;padding-top:1px}
+.dlist b{display:block;color:var(--fg);font-size:var(--t-m);font-weight:500;line-height:1.35}
+.dlist p{margin:3px 0 0;color:var(--fg-2);font-size:var(--t-s);line-height:1.55;max-width:60ch}
+.dlist li>div>p:only-child{margin:0;color:var(--fg);font-size:var(--t-m)}
+.kv{display:grid;grid-template-columns:36px minmax(0,1fr);gap:16px 14px;align-items:center}
+.kv div{display:flex;gap:4px 10px;align-items:center;flex-wrap:wrap;min-width:0;overflow-wrap:anywhere;font-size:var(--t-m);color:var(--fg)}
+.kv .kl{width:100%;font-size:var(--t-xs);color:var(--muted);line-height:1.3}
+.kv .miss{color:var(--fg-2)}
+.kv .tag{font-size:var(--t-xs);color:var(--k-stale);background:color-mix(in srgb,var(--k-stale) 14%,transparent);border-radius:999px;padding:2px 9px}
 .kv a{color:var(--fg);text-underline-offset:3px;text-decoration-color:var(--pink-line)}
 .kv .copy{margin-left:0}
 details.script{background:var(--card);border-radius:var(--r-in)}
@@ -313,7 +320,7 @@ details.script .row{padding:0 16px 16px}
 textarea{width:100%;min-height:96px;border:1px solid var(--line-2);border-radius:var(--r-in);padding:12px 14px;background:var(--card);color:var(--fg);resize:vertical}
 textarea:focus{outline:none;border-color:var(--pink-line)}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.note{font-size:var(--t-xs);color:var(--muted)}
+.note{font-size:var(--t-s);color:var(--muted)}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#fff;color:#0d0d0f;padding:8px 8px 8px 18px;border-radius:999px;font-weight:500;z-index:30;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;min-height:48px}
 .toast button{border:0;background:#0d0d0f;color:#fff;border-radius:999px;min-height:34px;padding:0 14px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
 .toast button[hidden]{display:none}
@@ -482,7 +489,7 @@ const ic=(id,cls="i")=>`<svg class="${cls}" aria-hidden="true"><use href="#i-${i
 const sic=k=>`<svg class="i si" aria-hidden="true"><use href="#i-${SICON[k]}"/></svg>`;
 const tile=(icon,kind,size="")=>`<span class="ib k-${kind} ${size}" aria-hidden="true"><svg class="i"><use href="#i-${icon}"/></svg></span>`;
 const fitPill=l=>`<span class="fitpill ${fitCls(fitOf(l))}">${fitOf(l)}</span>`;
-function probKind(t){t=(t||"").toLowerCase();return t.includes("book")?"booking":t.includes("updated")||t.includes("nothing new")?"stale":t.includes("tiny")||t.includes("whole site")?"thin":t.includes("builder")?"builder":t.includes("google")?"google":t.includes("ads")?"ads":t.includes("no website")?"nosite":"other"}
+function probKind(t){t=(t||"").toLowerCase();return /\bbook/.test(t)?"booking":t.includes("updated")||t.includes("nothing new")?"stale":t.includes("tiny")||t.includes("whole site")?"thin":t.includes("builder")?"builder":/\bads\b/.test(t)?"ads":t.includes("google")?"google":t.includes("no website")?"nosite":"other"}
 const KIND_ICON={booking:"cal",stale:"clock",thin:"file",builder:"tool",google:"google",ads:"ads",nosite:"globe",other:"dot"};
 const probTile=(p,size="")=>tile(KIND_ICON[probKind(p)],probKind(p),size);
 function safeUrl(u){try{const x=new URL(u);return /^https?:$/.test(x.protocol)?x.href:""}catch{return ""}}
@@ -716,13 +723,14 @@ function renderSheet(focus){
   <div class="s-body">
     <section class="s-sec"><h3>What to pitch</h3><div class="pitchbox">${tile("bulb","bulb","md")}<div><b>${esc(l.pitch||"Free website audit")}</b><span>Open with a free audit, then offer this.</span></div></div></section>
     ${l.caution?`<div class="caution">${ic("warn")}<span>${esc(l.caution)}. They may be harder to win.</span></div>`:""}
-    <section class="s-sec"><h3>What's wrong with their website</h3><ul class="dlist">${det.map((x,i)=>`<li>${probTile(rs[i]||x,"md")}<span>${esc(x)}</span></li>`).join("")||"<li>Nothing specific found yet</li>"}</ul></section>
+    <section class="s-sec"><h3>What's wrong with their website</h3><ul class="dlist">${det.map(x=>{const k=probKind(x),t=rs.find(r=>probKind(r)===k&&k!=="other")||(/ai search/i.test(x)?"Hidden from AI search":/wordpress/i.test(x)?"Runs on WordPress":"");
+        return `<li>${tile(KIND_ICON[k],k,"md")}<div>${t&&t!==x?`<b>${esc(t)}</b>`:""}<p>${esc(x)}</p></div></li>`}).join("")||"<li><div><p>Nothing specific found yet</p></div></li>"}</ul></section>
     <section class="s-sec"><h3>How to reach them</h3><div class="kv">
-      ${l.contactName?`${tile("user","user","md")}<div>${esc(l.contactName)}${l.contactTitle?`<span class="note">${esc(l.contactTitle)}</span>`:""}</div>`:""}
-      ${tile("mail","mail","md")}<div>${l.email?`${esc(l.email)}<button class="copy" type="button" data-copy="email" data-id="${esc(l.id)}" aria-label="Copy email">${ic("copy")}</button>${l.emailStatus==="verified"?"":`<span class="note">not verified yet</span>`}`:`<span class="note">Email not found yet</span>`}</div>
-      ${tile("phone","phone","md")}<div>${l.phone?`${esc(l.phone)}<button class="copy" type="button" data-copy="phone" data-id="${esc(l.id)}" aria-label="Copy phone number">${ic("copy")}</button>`:`<span class="note">No phone listed</span>`}</div>
-      ${tile("link","link","md")}<div>${site?`<a href="${esc(site)}" target="_blank" rel="noopener noreferrer">${esc(l.domain||site)}</a>`:`<span class="note">No website</span>`}</div>
-      ${safeUrl(l.contactForm)?`${tile("form","form","md")}<div><a href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">Their contact form</a></div>`:""}
+      ${l.contactName?`${tile("user","user","md")}<div><span class="kl">Owner</span>${esc(l.contactName)}${l.contactTitle?`<span class="miss">· ${esc(l.contactTitle)}</span>`:""}</div>`:""}
+      ${tile("mail","mail","md")}<div><span class="kl">Email</span>${l.email?`${esc(l.email)}<button class="copy" type="button" data-copy="email" data-id="${esc(l.id)}" aria-label="Copy email">${ic("copy")}</button>${l.emailStatus==="verified"?"":`<span class="tag">Not verified yet</span>`}`:`<span class="miss">Not found yet</span>`}</div>
+      ${tile("phone","phone","md")}<div><span class="kl">Phone</span>${l.phone?`${esc(l.phone)}<button class="copy" type="button" data-copy="phone" data-id="${esc(l.id)}" aria-label="Copy phone number">${ic("copy")}</button>`:`<span class="miss">Not listed</span>`}</div>
+      ${tile("link","link","md")}<div><span class="kl">Website</span>${site?`<a href="${esc(site)}" target="_blank" rel="noopener noreferrer">${esc(l.domain||site)}</a>`:`<span class="miss">None</span>`}</div>
+      ${safeUrl(l.contactForm)?`${tile("form","form","md")}<div><span class="kl">Contact form</span><a href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">Open their contact form</a></div>`:""}
     </div></section>
     ${l.email?`<details class="script" open><summary>${tile("mail","mail")}Ready-to-send email</summary><div class="txt">${esc(emailDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="draft" data-id="${esc(l.id)}">${ic("copy")}Copy email</button><span class="note">Check each point on their site first.</span></div></details>`:""}
     ${l.email&&st(l)==="contacted"?`<details class="script"${isDue(l)?" open":""}><summary>${tile("undo","mail")}Follow-up email${isDue(l)?' <span class="note">due now</span>':""}</summary><div class="txt">${esc(followUpDraft(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="followup" data-id="${esc(l.id)}">${ic("copy")}Copy follow-up</button><button class="btn sm" type="button" data-followed="${esc(l.id)}">${ic("check")}Mark followed up</button></div></details>`:""}
