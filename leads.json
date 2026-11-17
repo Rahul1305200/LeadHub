@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T05:55:48+00:00",
+ "generatedAt": "2026-11-17T06:01:57+00:00",
  "leads": [
   {
    "id": "9a2d71a9ce8e",
@@ -584,6 +584,45 @@
    "foundAt": "2026-11-16"
   },
   {
+   "id": "f1b7e1788358",
+   "name": "Grow Construction llc",
+   "trade": "Contractor",
+   "city": "Tigard, OR",
+   "area": "Portland area",
+   "website": "https://www.grow-construction.com/",
+   "domain": "grow-construction.com",
+   "phone": "+1-503-278-5332",
+   "email": "info@grow-construction.com",
+   "emailStatus": "guess",
+   "contactName": "",
+   "contactTitle": "",
+   "contactForm": "",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 78,
+   "reasons": [
+    "Customers can't book online",
+    "Not updated in 2 years",
+    "Tiny site (5 pages)"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Nothing new on the site in 2 years.",
+    "The whole site is 5 pages, with no page per service or area, which is what ranks on Google.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "",
+   "fit": "Strong fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The newest page on the site is 2 years old",
+    "The site has only 5 pages, so there's no page for each service or area you cover, which is what ranks on Google"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
    "id": "2960958f7fd1",
    "name": "Paloma Vista Dental",
    "trade": "Dentist",
@@ -1079,6 +1118,44 @@
    "foundAt": "2026-11-17"
   },
   {
+   "id": "f73907093aea",
+   "name": "Straight Line Design & Remodeling",
+   "trade": "Contractor",
+   "city": "Portland, OR",
+   "area": "Portland area",
+   "website": "https://straightlinedr.com/",
+   "domain": "straightlinedr.com",
+   "phone": "+1-503-244-5463",
+   "email": "matt@straightlinedr.com",
+   "emailStatus": "guess",
+   "contactName": "Matt Williams",
+   "contactTitle": "Owner/General Manager",
+   "contactForm": "https://straightlinedr.com",
+   "platform": "Squarespace site builder",
+   "segment": "weak_site",
+   "score": 77,
+   "reasons": [
+    "Customers can't book online",
+    "Pays for ads",
+    "Cheap site builder (Squarespace)"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Already pays for Google or Facebook ads, so they have a marketing budget.",
+    "Built on Squarespace, a DIY site builder that limits speed and Google ranking."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "",
+   "fit": "Strong fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "You're paying for ads, so every visitor the site doesn't convert costs you money",
+    "The site is on Squarespace, which limits speed and SEO compared with a custom build"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
    "id": "a39cd4b3fc01",
    "name": "Radiance Dental",
    "trade": "Dentist",
@@ -1346,45 +1423,6 @@
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day",
     "The site is on Squarespace, which limits speed and SEO compared with a custom build"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
-   "id": "f1b7e1788358",
-   "name": "Grow Construction llc",
-   "trade": "Contractor",
-   "city": "Tigard, OR",
-   "area": "Portland area",
-   "website": "https://www.grow-construction.com/",
-   "domain": "grow-construction.com",
-   "phone": "+1-503-278-5332",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 74,
-   "reasons": [
-    "Customers can't book online",
-    "Not updated in 2 years",
-    "Tiny site (5 pages)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Nothing new on the site in 2 years.",
-    "The whole site is 5 pages, with no page per service or area, which is what ranks on Google.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "",
-   "fit": "Strong fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The newest page on the site is 2 years old",
-    "The site has only 5 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
@@ -1987,6 +2025,42 @@
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day",
     "You're paying for ads, so every visitor the site doesn't convert costs you money"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
+   "id": "f1973b40f07b",
+   "name": "Tillmann Law P.L.L.C.",
+   "trade": "Lawyer",
+   "city": "Portland",
+   "area": "Portland area",
+   "website": "https://tillmannlaw.com/",
+   "domain": "tillmannlaw.com",
+   "phone": "+1-503-272-8986",
+   "email": "aaron@tillmannlaw.com",
+   "emailStatus": "guess",
+   "contactName": "Aaron Tillmann",
+   "contactTitle": "FOUNDER & MANAGING PARTNER",
+   "contactForm": "https://tillmannlaw.com",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 71,
+   "reasons": [
+    "Customers can't book online",
+    "Tiny site (3 pages)"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "The whole site is 3 pages, with no page per service or area, which is what ranks on Google.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "",
+   "fit": "Strong fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The site has only 3 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
@@ -2989,44 +3063,6 @@
    "foundAt": "2026-11-17"
   },
   {
-   "id": "f73907093aea",
-   "name": "Straight Line Design & Remodeling",
-   "trade": "Contractor",
-   "city": "Portland, OR",
-   "area": "Portland area",
-   "website": "https://straightlinedr.com/",
-   "domain": "straightlinedr.com",
-   "phone": "+1-503-244-5463",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://straightlinedr.com",
-   "platform": "Squarespace site builder",
-   "segment": "weak_site",
-   "score": 65,
-   "reasons": [
-    "Customers can't book online",
-    "Pays for ads",
-    "Cheap site builder (Squarespace)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Already pays for Google or Facebook ads, so they have a marketing budget.",
-    "Built on Squarespace, a DIY site builder that limits speed and Google ranking."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "",
-   "fit": "Good fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "You're paying for ads, so every visitor the site doesn't convert costs you money",
-    "The site is on Squarespace, which limits speed and SEO compared with a custom build"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
    "id": "8b0b75eb8137",
    "name": "Pihl Law",
    "trade": "Lawyer",
@@ -3203,6 +3239,43 @@
    "foundAt": "2026-11-17"
   },
   {
+   "id": "e5e93b1382b4",
+   "name": "Mosaik Design",
+   "trade": "Contractor",
+   "city": "Portland, OR",
+   "area": "Portland area",
+   "website": "https://mosaikdesign.com/",
+   "domain": "mosaikdesign.com",
+   "phone": "+1-503-406-6179",
+   "email": "erin@mosaikdesign.com",
+   "emailStatus": "guess",
+   "contactName": "Erin Davis",
+   "contactTitle": "Owner and Designer. Last updated September 30, 2026.",
+   "contactForm": "https://mosaikdesign.com",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 63,
+   "reasons": [
+    "Customers can't book online",
+    "Tiny site (2 pages)"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "The whole site is 2 pages, with no page per service or area, which is what ranks on Google.",
+    "Blocks AI search tools like ChatGPT from reading the site.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "Already works with an agency (Intuitive Digital)",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The site has only 2 pages, so there's no page for each service or area you cover, which is what ranks on Google"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
    "id": "3647446d65ce",
    "name": "Pro Metal Buildings",
    "trade": "Contractor",
@@ -3270,6 +3343,42 @@
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day",
     "The site has only 4 pages, so there's no page for each service or area you cover, which is what ranks on Google"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
+   "id": "fb6acad41723",
+   "name": "Bedont Orthodontic",
+   "trade": "Dentist",
+   "city": "Camas, WA",
+   "area": "Portland area",
+   "website": "https://www.bedontortho.com/",
+   "domain": "bedontortho.com",
+   "phone": "",
+   "email": "info@bedontortho.com",
+   "emailStatus": "guess",
+   "contactName": "",
+   "contactTitle": "",
+   "contactForm": "",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 63,
+   "reasons": [
+    "Customers can't book online",
+    "Tiny site (3 pages)"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "The whole site is 3 pages, with no page per service or area, which is what ranks on Google.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The site has only 3 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
@@ -3382,6 +3491,39 @@
    "foundAt": "2026-11-16"
   },
   {
+   "id": "ecbc71e80c10",
+   "name": "Performance Contracting",
+   "trade": "Contractor",
+   "city": "Tigard, OR",
+   "area": "Portland area",
+   "website": "https://www.performancecontracting.com/",
+   "domain": "performancecontracting.com",
+   "phone": "+1-503-684-5533",
+   "email": "jason.hendricks@performancecontracting.com",
+   "emailStatus": "guess",
+   "contactName": "Jason Hendricks",
+   "contactTitle": "President & CEO",
+   "contactForm": "https://performancecontracting.com",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 61,
+   "reasons": [
+    "Customers can't book online"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "Add online booking",
+   "caution": "",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
    "id": "5ba82c3fe956",
    "name": "Metke Remodeling",
    "trade": "Contractor",
@@ -3445,6 +3587,45 @@
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day",
     "The site has no schema markup, so Google can't show your hours, reviews or services in search results"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
+   "id": "fd7e7d3f2b32",
+   "name": "Defense Plumbing",
+   "trade": "Plumber",
+   "city": "Denver, CO",
+   "area": "Denver area",
+   "website": "https://www.defenseplumbing.com",
+   "domain": "defenseplumbing.com",
+   "phone": "+1 303 842-4799",
+   "email": "office@defenseplumbing.com",
+   "emailStatus": "guess",
+   "contactName": "",
+   "contactTitle": "",
+   "contactForm": "https://defenseplumbing.com",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 61,
+   "reasons": [
+    "Customers can't book online",
+    "Tiny site (4 pages)",
+    "Pays for ads"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "The whole site is 4 pages, with no page per service or area, which is what ranks on Google.",
+    "Already pays for Google or Facebook ads, so they have a marketing budget.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "Already works with an agency (X3 Marketing)",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The site has only 4 pages, so there's no page for each service or area you cover, which is what ranks on Google",
+    "You're paying for ads, so every visitor the site doesn't convert costs you money"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
@@ -3637,6 +3818,39 @@
    "contactName": "Alexandre Abitbol",
    "contactTitle": "Partner",
    "contactForm": "https://ogletree.com",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 61,
+   "reasons": [
+    "Customers can't book online"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "Add online booking",
+   "caution": "",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
+   "id": "fca03d689349",
+   "name": "Ball Janik",
+   "trade": "Lawyer",
+   "city": "Portland, OR",
+   "area": "Portland area",
+   "website": "https://www.balljanik.com/",
+   "domain": "balljanik.com",
+   "phone": "",
+   "email": "keegan@balljanik.com",
+   "emailStatus": "guess",
+   "contactName": "Keegan Berry",
+   "contactTitle": "Partner",
+   "contactForm": "https://balljanik.com",
    "platform": "WordPress",
    "segment": "weak_site",
    "score": 61,
@@ -4073,6 +4287,42 @@
    "foundAt": "2026-11-17"
   },
   {
+   "id": "f6441640bc82",
+   "name": "Walden Dental",
+   "trade": "Dentist",
+   "city": "Cedar Park, TX",
+   "area": "Austin area",
+   "website": "https://www.waldendentaltx.com/",
+   "domain": "waldendentaltx.com",
+   "phone": "+1-512-337-8560",
+   "email": "david@waldendentaltx.com",
+   "emailStatus": "guess",
+   "contactName": "David Frank",
+   "contactTitle": "Owner and Founder of Walden Dental",
+   "contactForm": "https://waldendentaltx.com/contact",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 59,
+   "reasons": [
+    "Customers can't book online",
+    "Tiny site (2 pages)"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "The whole site is 2 pages, with no page per service or area, which is what ranks on Google.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "Already works with an agency (SERP Dental)",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The site has only 2 pages, so there's no page for each service or area you cover, which is what ranks on Google"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
    "id": "dd6699a5b437",
    "name": "risas Dental and Braces",
    "trade": "Dentist",
@@ -4361,42 +4611,6 @@
    "foundAt": "2026-11-17"
   },
   {
-   "id": "f1973b40f07b",
-   "name": "Tillmann Law P.L.L.C.",
-   "trade": "Lawyer",
-   "city": "Portland",
-   "area": "Portland area",
-   "website": "https://tillmannlaw.com/",
-   "domain": "tillmannlaw.com",
-   "phone": "+1-503-272-8986",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://tillmannlaw.com",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 59,
-   "reasons": [
-    "Customers can't book online",
-    "Tiny site (3 pages)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "The whole site is 3 pages, with no page per service or area, which is what ranks on Google.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "",
-   "fit": "Good fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The site has only 3 pages, so there's no page for each service or area you cover, which is what ranks on Google"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
    "id": "a2bc6d0317eb",
    "name": "Washington Personal Injury Attorneys",
    "trade": "Lawyer",
@@ -4466,6 +4680,39 @@
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-16"
+  },
+  {
+   "id": "e7946a55330f",
+   "name": "Construction Company- Swinerton",
+   "trade": "Contractor",
+   "city": "Portland, OR",
+   "area": "Portland area",
+   "website": "https://www.swinerton.com/",
+   "domain": "swinerton.com",
+   "phone": "+1-503-224-6888",
+   "email": "dcallis@swinerton.com",
+   "emailStatus": "guess",
+   "contactName": "Dave Callis",
+   "contactTitle": "Chief Executive Officer",
+   "contactForm": "https://swinerton.com/contact",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 57,
+   "reasons": [
+    "Customers can't book online"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "Add online booking",
+   "caution": "",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
   },
   {
    "id": "97833f0df097",
@@ -4714,45 +4961,6 @@
    "foundAt": "2026-11-17"
   },
   {
-   "id": "fd7e7d3f2b32",
-   "name": "Defense Plumbing",
-   "trade": "Plumber",
-   "city": "Denver, CO",
-   "area": "Denver area",
-   "website": "https://www.defenseplumbing.com",
-   "domain": "defenseplumbing.com",
-   "phone": "+1 303 842-4799",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://defenseplumbing.com",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 57,
-   "reasons": [
-    "Customers can't book online",
-    "Tiny site (4 pages)",
-    "Pays for ads"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "The whole site is 4 pages, with no page per service or area, which is what ranks on Google.",
-    "Already pays for Google or Facebook ads, so they have a marketing budget.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "Already works with an agency (X3 Marketing)",
-   "fit": "Good fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The site has only 4 pages, so there's no page for each service or area you cover, which is what ranks on Google",
-    "You're paying for ads, so every visitor the site doesn't convert costs you money"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
    "id": "f635da643b9d",
    "name": "Fireside Heating and Cooling",
    "trade": "HVAC",
@@ -4964,6 +5172,39 @@
    "foundAt": "2026-11-17"
   },
   {
+   "id": "e7f0981bb25a",
+   "name": "Schwabe",
+   "trade": "Lawyer",
+   "city": "Portland, OR",
+   "area": "Portland area",
+   "website": "https://www.schwabe.com/",
+   "domain": "schwabe.com",
+   "phone": "",
+   "email": "ttongue@schwabe.com",
+   "emailStatus": "guess",
+   "contactName": "Tom Tongue",
+   "contactTitle": "Chief Executive Officer",
+   "contactForm": "https://schwabe.com",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 57,
+   "reasons": [
+    "Customers can't book online"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "Add online booking",
+   "caution": "",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
    "id": "2b27094640dc",
    "name": "Farleigh Wada Witt",
    "trade": "Lawyer",
@@ -5059,6 +5300,42 @@
    "fit": "Good fit",
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
+   "id": "f5a0f25c16ab",
+   "name": "Sheron Dental",
+   "trade": "Dentist",
+   "city": "Vancouver, WA",
+   "area": "Portland area",
+   "website": "https://www.sherondental.com/",
+   "domain": "sherondental.com",
+   "phone": "+1-360-573-8181",
+   "email": "contact@sherondental.com",
+   "emailStatus": "guess",
+   "contactName": "",
+   "contactTitle": "",
+   "contactForm": "",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 56,
+   "reasons": [
+    "Customers can't book online",
+    "Not updated in 5 years"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Nothing new on the site in 5 years.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "Already works with an agency (New Patients Inc.)",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The newest page on the site is 5 years old"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
@@ -5239,6 +5516,39 @@
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
+  },
+  {
+   "id": "ec5a90b66f36",
+   "name": "ROD Plumbing Inc",
+   "trade": "Plumber",
+   "city": "Round Rock, TX",
+   "area": "Austin area",
+   "website": "https://www.rodplumbingtexas.com",
+   "domain": "rodplumbingtexas.com",
+   "phone": "+1 512-838-1182",
+   "email": "info@rodplumbingtexas.com",
+   "emailStatus": "guess",
+   "contactName": "",
+   "contactTitle": "",
+   "contactForm": "https://rodplumbingtexas.com/contact",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 53,
+   "reasons": [
+    "Customers can't book online"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "pitch": "Add online booking",
+   "caution": "",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-16"
   },
   {
    "id": "9038a5c09d96",
@@ -5517,42 +5827,6 @@
    "foundAt": "2026-11-17"
   },
   {
-   "id": "f5a0f25c16ab",
-   "name": "Sheron Dental",
-   "trade": "Dentist",
-   "city": "Vancouver, WA",
-   "area": "Portland area",
-   "website": "https://www.sherondental.com/",
-   "domain": "sherondental.com",
-   "phone": "+1-360-573-8181",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 52,
-   "reasons": [
-    "Customers can't book online",
-    "Not updated in 5 years"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Nothing new on the site in 5 years.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "Already works with an agency (New Patients Inc.)",
-   "fit": "Good fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The newest page on the site is 5 years old"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
    "id": "4e2c15f7aa5f",
    "name": "David J. Cavano",
    "trade": "Dentist",
@@ -5665,43 +5939,6 @@
    "foundAt": "2026-11-17"
   },
   {
-   "id": "e5e93b1382b4",
-   "name": "Mosaik Design",
-   "trade": "Contractor",
-   "city": "Portland, OR",
-   "area": "Portland area",
-   "website": "https://mosaikdesign.com/",
-   "domain": "mosaikdesign.com",
-   "phone": "+1-503-406-6179",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://mosaikdesign.com",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 51,
-   "reasons": [
-    "Customers can't book online",
-    "Tiny site (2 pages)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "The whole site is 2 pages, with no page per service or area, which is what ranks on Google.",
-    "Blocks AI search tools like ChatGPT from reading the site.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "Already works with an agency (Intuitive Digital)",
-   "fit": "Good fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The site has only 2 pages, so there's no page for each service or area you cover, which is what ranks on Google"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
    "id": "986f8df6fb4c",
    "name": "Castle Dental",
    "trade": "Dentist",
@@ -5768,39 +6005,6 @@
    "foundAt": "2026-11-16"
   },
   {
-   "id": "ec5a90b66f36",
-   "name": "ROD Plumbing Inc",
-   "trade": "Plumber",
-   "city": "Round Rock, TX",
-   "area": "Austin area",
-   "website": "https://www.rodplumbingtexas.com",
-   "domain": "rodplumbingtexas.com",
-   "phone": "+1 512-838-1182",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://rodplumbingtexas.com/contact",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 49,
-   "reasons": [
-    "Customers can't book online"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "Add online booking",
-   "caution": "",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-16"
-  },
-  {
    "id": "823db6b8c78d",
    "name": "Smart Charge America",
    "trade": "Electrician",
@@ -5832,72 +6036,6 @@
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-16"
-  },
-  {
-   "id": "e7946a55330f",
-   "name": "Construction Company- Swinerton",
-   "trade": "Contractor",
-   "city": "Portland, OR",
-   "area": "Portland area",
-   "website": "https://www.swinerton.com/",
-   "domain": "swinerton.com",
-   "phone": "+1-503-224-6888",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://swinerton.com/contact",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 49,
-   "reasons": [
-    "Customers can't book online"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "Add online booking",
-   "caution": "",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
-   "id": "ecbc71e80c10",
-   "name": "Performance Contracting",
-   "trade": "Contractor",
-   "city": "Tigard, OR",
-   "area": "Portland area",
-   "website": "https://www.performancecontracting.com/",
-   "domain": "performancecontracting.com",
-   "phone": "+1-503-684-5533",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://performancecontracting.com",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 49,
-   "reasons": [
-    "Customers can't book online"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "Add online booking",
-   "caution": "",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
   },
   {
    "id": "cef76d432406",
@@ -6262,6 +6400,38 @@
    "foundAt": "2026-11-17"
   },
   {
+   "id": "e52d3ce1e4b0",
+   "name": "Justus Orthodontics",
+   "trade": "Dentist",
+   "city": "Portland, OR",
+   "area": "Portland area",
+   "website": "https://www.justusorthodontics.com/",
+   "domain": "justusorthodontics.com",
+   "phone": "+1-503-352-3800",
+   "email": "info@justusorthodontics.com",
+   "emailStatus": "guess",
+   "contactName": "",
+   "contactTitle": "",
+   "contactForm": "",
+   "platform": "",
+   "segment": "weak_site",
+   "score": 49,
+   "reasons": [
+    "Customers can't book online"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours."
+   ],
+   "pitch": "Add online booking",
+   "caution": "",
+   "fit": "Possible",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17"
+  },
+  {
    "id": "bd46ad57e2c0",
    "name": "Precision Plumbing, Heating, Cooling & Electric",
    "trade": "Plumber",
@@ -6460,72 +6630,6 @@
    "foundAt": "2026-11-17"
   },
   {
-   "id": "e7f0981bb25a",
-   "name": "Schwabe",
-   "trade": "Lawyer",
-   "city": "Portland, OR",
-   "area": "Portland area",
-   "website": "https://www.schwabe.com/",
-   "domain": "schwabe.com",
-   "phone": "",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://schwabe.com",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 49,
-   "reasons": [
-    "Customers can't book online"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "Add online booking",
-   "caution": "",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
-   "id": "fca03d689349",
-   "name": "Ball Janik",
-   "trade": "Lawyer",
-   "city": "Portland, OR",
-   "area": "Portland area",
-   "website": "https://www.balljanik.com/",
-   "domain": "balljanik.com",
-   "phone": "",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://balljanik.com",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 49,
-   "reasons": [
-    "Customers can't book online"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "Add online booking",
-   "caution": "",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
    "id": "10469aabffb3",
    "name": "Michael Wise & Associates",
    "trade": "Lawyer",
@@ -6692,42 +6796,6 @@
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day",
     "The site has only 4 pages, so there's no page for each service or area you cover, which is what ranks on Google"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
-   "id": "f6441640bc82",
-   "name": "Walden Dental",
-   "trade": "Dentist",
-   "city": "Cedar Park, TX",
-   "area": "Austin area",
-   "website": "https://www.waldendentaltx.com/",
-   "domain": "waldendentaltx.com",
-   "phone": "+1-512-337-8560",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "https://waldendentaltx.com/contact",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 47,
-   "reasons": [
-    "Customers can't book online",
-    "Tiny site (2 pages)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "The whole site is 2 pages, with no page per service or area, which is what ranks on Google.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "Already works with an agency (SERP Dental)",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The site has only 2 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
@@ -7068,38 +7136,6 @@
    "foundAt": "2026-11-17"
   },
   {
-   "id": "e52d3ce1e4b0",
-   "name": "Justus Orthodontics",
-   "trade": "Dentist",
-   "city": "Portland, OR",
-   "area": "Portland area",
-   "website": "https://www.justusorthodontics.com/",
-   "domain": "justusorthodontics.com",
-   "phone": "+1-503-352-3800",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "",
-   "platform": "",
-   "segment": "weak_site",
-   "score": 45,
-   "reasons": [
-    "Customers can't book online"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours."
-   ],
-   "pitch": "Add online booking",
-   "caution": "",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
    "id": "54049b658bcb",
    "name": "Littleton Septic Pros",
    "trade": "Plumber",
@@ -7127,42 +7163,6 @@
    "fit": "Possible",
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
-   "id": "fb6acad41723",
-   "name": "Bedont Orthodontic",
-   "trade": "Dentist",
-   "city": "Camas, WA",
-   "area": "Portland area",
-   "website": "https://www.bedontortho.com/",
-   "domain": "bedontortho.com",
-   "phone": "",
-   "email": "",
-   "emailStatus": "",
-   "contactName": "",
-   "contactTitle": "",
-   "contactForm": "",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 44,
-   "reasons": [
-    "Customers can't book online",
-    "Tiny site (3 pages)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "The whole site is 3 pages, with no page per service or area, which is what ranks on Google.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "",
-   "fit": "Possible",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The site has only 3 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
