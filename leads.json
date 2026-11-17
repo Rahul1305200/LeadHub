@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T12:33:23+00:00",
+ "generatedAt": "2026-11-17T12:41:30+00:00",
  "leads": [
   {
    "id": "45a7bda3a1a3",
@@ -2067,51 +2067,6 @@
    "observations": [
     "There's no way to book online, so anyone visiting after hours has to call back during the day",
     "The newest page on the site is over a year old"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
-  },
-  {
-   "id": "42ddab245022",
-   "name": "Morgan & Morgan",
-   "trade": "Lawyer",
-   "city": "Portland, OR",
-   "area": "Portland area",
-   "website": "https://www.forthepeople.com/office-locations/oregon/portland/",
-   "domain": "forthepeople.com",
-   "phone": "(503) 889-2660",
-   "email": "john@forthepeople.com",
-   "emailStatus": "verified",
-   "contactName": "John Morgan",
-   "contactTitle": "Founder",
-   "contactForm": "https://forthepeople.com",
-   "platform": "",
-   "segment": "weak_site",
-   "score": 75,
-   "reasons": [
-    "Customers can't book online",
-    "Tiny site (3 pages)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "The whole site is 3 pages, with no page per service or area, which is what ranks on Google."
-   ],
-   "problems": [
-    {
-     "title": "Customers can't book online",
-     "text": "There's no way to book or ask for a quote on the site, so anyone visiting after hours has to call back during the day."
-    },
-    {
-     "title": "Tiny site (3 pages)",
-     "text": "There's no page for each service or area they cover, and those pages are what rank on Google."
-    }
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "",
-   "fit": "Strong fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The site has only 3 pages, so there's no page for each service or area you cover, which is what ranks on Google"
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
