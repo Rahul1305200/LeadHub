@@ -76,6 +76,7 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .kbd span{font-size:12.5px;color:var(--muted);background:var(--card-3);border-radius:6px;padding:1px 6px}
 .top-right{margin-left:auto;display:flex;align-items:center;gap:10px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--fg);font-weight:500;white-space:nowrap;transition:background-color .15s,border-color .15s,transform .1s}
+a.btn{text-decoration:none}
 .btn:hover{background:var(--card-2)}
 .btn:active{transform:scale(.98)}
 .btn.pink{background:var(--pink-btn);border-color:var(--pink-btn);color:#fff}
@@ -320,6 +321,7 @@ details.script summary::after{content:"Show";margin-left:auto;color:var(--muted)
 details.script[open] summary::after{content:"Hide"}
 details.script .txt{white-space:pre-wrap;padding:0 16px 14px;line-height:1.65;color:var(--fg-2);overflow-wrap:anywhere;font-size:var(--t-s)}
 details.script .row{padding:0 16px 16px}
+details.script .howto{margin:0 16px 12px;font-size:var(--t-s);color:var(--fg-2);line-height:1.5}
 textarea{width:100%;min-height:96px;border:1px solid var(--line-2);border-radius:var(--r-in);padding:12px 14px;background:var(--card);color:var(--fg);resize:vertical}
 textarea:focus{outline:none;border-color:var(--pink-line)}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
@@ -700,6 +702,21 @@ Want me to send yours over? No cost and no strings.
 Nur
 NurAndCode · nurandcode.com`;
 }
+// For leads with no email: a message to paste into the contact form on their own website
+function formDraft(l){
+  const obs=(l.observations||[]).slice(0,2);
+  return `Hi,
+
+I had a look at ${l.domain||"your website"} and noticed a couple of things:
+${(obs.length?obs:["a few quick fixes that could bring in more enquiries"]).map(o=>"• "+o).join("\n")}
+
+I do free website audits for local ${tradePl(l)}: speed, mobile, Google visibility and how easy it is to call or book, with the top 3 fixes.
+
+Want me to send yours over? No cost and no strings.
+
+Nur
+NurAndCode · nurandcode.com`;
+}
 function callScript(l){
   return l.segment==="no_website"
   ?`Hi, is this the owner of ${l.name}? I'm Nur. I build websites for local ${tradePl(l)}. I couldn't find a website for you on Google, so people searching for you can't see your work or contact you online. I'd be happy to put together a free mock-up of what yours could look like. Would that be useful?`
@@ -714,7 +731,9 @@ function renderSheet(focus){
   const primary=st(l)==="new"
     ?`<button class="btn pink" type="button" id="mark" ${canWrite?"":"disabled"}>${ic("check-c")}Mark contacted${nx?" & next":""}</button>`
     :statusDD(l,"sheet-status");
+  const formUrl=safeUrl(l.contactForm)||site;
   const contact=l.email?`<button class="btn" type="button" data-copy="email" data-id="${esc(l.id)}">${ic("mail")}Copy email</button>`
+    :site?`<button class="btn" type="button" data-copy="form" data-id="${esc(l.id)}">${ic("form")}Copy message</button>`
     :l.phone?`<button class="btn" type="button" data-copy="phone" data-id="${esc(l.id)}">${ic("phone")}Copy phone</button>`
     :safeUrl(l.contactForm)?`<a class="btn" href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">${ic("form")}Open form</a>`:"";
   const left=queue().filter(x=>x.id!==l.id).length;
@@ -732,6 +751,7 @@ function renderSheet(focus){
       ${tile("link","link","md")}<div><span class="kl">Website</span>${site?`<a href="${esc(site)}" target="_blank" rel="noopener noreferrer">${esc(l.domain||site)}</a>`:`<span class="miss">None</span>`}</div>
       ${safeUrl(l.contactForm)?`${tile("form","form","md")}<div><span class="kl">Contact form</span><a href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">Open their contact form</a></div>`:""}
     </div></section>
+    ${!l.email&&site?`<details class="script" open><summary>${tile("form","form")}Message for their website</summary><p class="howto">No email found, so send this through the contact form on their site. Fill in your name and email on their form, then paste the message.</p><div class="txt">${esc(formDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="form" data-id="${esc(l.id)}">${ic("copy")}Copy message</button><a class="btn sm" href="${esc(formUrl)}" target="_blank" rel="noopener noreferrer">${ic("out")}${safeUrl(l.contactForm)?"Open their contact form":"Open their website"}</a></div></details>`:""}
     ${l.email?`<details class="script" open><summary>${tile("mail","mail")}Ready-to-send email</summary><div class="txt">${esc(emailDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="draft" data-id="${esc(l.id)}">${ic("copy")}Copy email</button><span class="note">Check each point on their site first.</span></div></details>`:""}
     ${l.email&&st(l)==="contacted"?`<details class="script"${isDue(l)?" open":""}><summary>${tile("undo","mail")}Follow-up email${isDue(l)?' <span class="note">due now</span>':""}</summary><div class="txt">${esc(followUpDraft(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="followup" data-id="${esc(l.id)}">${ic("copy")}Copy follow-up</button><button class="btn sm" type="button" data-followed="${esc(l.id)}">${ic("check")}Mark followed up</button></div></details>`:""}
     ${l.phone?`<details class="script" ${l.email?"":"open"}><summary>${tile("phone","phone")}What to say on the phone</summary><div class="txt">${esc(callScript(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="script" data-id="${esc(l.id)}">${ic("copy")}Copy script</button></div></details>`:""}
@@ -906,7 +926,7 @@ document.addEventListener("click",e=>{
     if(t.dataset.followed)return markFollowed(t.dataset.followed,t);
     if(t.dataset.open)return openSheet(t.dataset.open);
     if(t.dataset.copy){const l=leads.find(x=>x.id===t.dataset.id);if(!l)return;const k=t.dataset.copy;
-      if(k==="draft")return copy(emailDraft(l),"Email",t);if(k==="followup")return copy(followUpDraft(l),"Follow-up email",t);if(k==="script")return copy(callScript(l),"Phone script",t);return copy(l[k],k==="email"?"Email address":"Phone number",t)}
+      if(k==="draft")return copy(emailDraft(l),"Email",t);if(k==="form")return copy(formDraft(l),"Message",t);if(k==="followup")return copy(followUpDraft(l),"Follow-up email",t);if(k==="script")return copy(callScript(l),"Phone script",t);return copy(l[k],k==="email"?"Email address":"Phone number",t)}
     return;
   }
   if(e.target.closest("a"))return;
