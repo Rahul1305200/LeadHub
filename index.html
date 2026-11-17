@@ -208,10 +208,10 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 
 /* Lead list: one panel per fit group, each lead a card like the dashboard's */
 .gpanel{display:flex;flex-direction:column;gap:18px}
-.ghead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:2px 4px 0}
+.ghead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:2px 4px 0}
 .ghead h2{margin:0;font-size:var(--t-xl);font-weight:500;letter-spacing:-.01em;line-height:1.2;display:flex;align-items:center;gap:12px}
 .ghead h2 .d{width:10px;height:10px;border-radius:50%;background:var(--fd);flex:none}
-.ghead .gn{font-size:var(--t-xl);font-weight:500;color:var(--muted);line-height:1.2}
+.ghead .gn{display:inline-grid;place-items:center;min-width:34px;height:30px;padding:0 11px;border-radius:999px;background:var(--card-2);color:var(--fg-2);font-size:var(--t-s);font-weight:500;line-height:1}
 .ghead p{margin:0 0 0 auto;color:var(--muted);font-size:var(--t-s)}
 .rows{display:flex;flex-direction:column;gap:8px}
 .rows.call{--reach:200px}
@@ -367,7 +367,7 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
   .seg{width:100%;flex-wrap:wrap;border-radius:18px}.seg button{flex:1 1 40%;justify-content:center}
   .tb-right{width:100%}.tb-right .dd{flex:1 1 40%;min-width:0}
   .vhead{padding:20px;gap:16px}.vhead .ccirc{width:64px;height:64px;font-size:22px}.vhead .vf{flex-basis:100%}.vhead h1{font-size:var(--t-l)}
-  .ghead h2,.ghead .gn{font-size:var(--t-l)}.ghead p{margin-left:0;width:100%}
+  .ghead h2{font-size:var(--t-l)}.ghead p{margin-left:0;width:100%}
   .panel.gpanel{padding:14px}
   .lrow{grid-template-columns:minmax(0,1fr) 40px;grid-template-areas:"who go" "what what" "reach st";gap:12px}
   .lrow .reach{justify-content:flex-start}
