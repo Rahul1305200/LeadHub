@@ -321,6 +321,9 @@ details.script summary::after{content:"Show";margin-left:auto;color:var(--muted)
 details.script[open] summary::after{content:"Hide"}
 details.script .txt{white-space:pre-wrap;padding:0 16px 14px;line-height:1.65;color:var(--fg-2);overflow-wrap:anywhere;font-size:var(--t-s)}
 details.script .row{padding:0 16px 16px}
+details.script .subj{display:flex;align-items:center;gap:12px;margin:0 16px 12px;padding:10px 10px 10px 14px;border-radius:12px;background:var(--card-2)}
+details.script .subj span{flex:1;min-width:0;color:var(--fg);font-size:var(--t-s);overflow-wrap:anywhere}
+details.script .subj small{display:block;font-size:var(--t-xs);color:var(--muted)}
 details.script .howto{margin:0 16px 12px;font-size:var(--t-s);color:var(--fg-2);line-height:1.5}
 textarea{width:100%;min-height:96px;border:1px solid var(--line-2);border-radius:var(--r-in);padding:12px 14px;background:var(--card);color:var(--fg);resize:vertical}
 textarea:focus{outline:none;border-color:var(--pink-line)}
@@ -702,6 +705,7 @@ Want me to send yours over? No cost and no strings.
 Nur
 NurAndCode · nurandcode.com`;
 }
+const formSubject=l=>`Quick idea for the ${l.name} website`;
 // For leads with no email: a message to paste into the contact form on their own website
 function formDraft(l){
   const obs=(l.observations||[]).slice(0,2);
@@ -751,7 +755,7 @@ function renderSheet(focus){
       ${tile("link","link","md")}<div><span class="kl">Website</span>${site?`<a href="${esc(site)}" target="_blank" rel="noopener noreferrer">${esc(l.domain||site)}</a>`:`<span class="miss">None</span>`}</div>
       ${safeUrl(l.contactForm)?`${tile("form","form","md")}<div><span class="kl">Contact form</span><a href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">Open their contact form</a></div>`:""}
     </div></section>
-    ${!l.email&&site?`<details class="script" open><summary>${tile("form","form")}Message for their website</summary><p class="howto">No email found, so send this through the contact form on their site. Fill in your name and email on their form, then paste the message.</p><div class="txt">${esc(formDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="form" data-id="${esc(l.id)}">${ic("copy")}Copy message</button><a class="btn sm" href="${esc(formUrl)}" target="_blank" rel="noopener noreferrer">${ic("out")}${safeUrl(l.contactForm)?"Open their contact form":"Open their website"}</a></div></details>`:""}
+    ${!l.email&&site?`<details class="script" open><summary>${tile("form","form")}Message for their website</summary><p class="howto">No email found, so send this through the contact form on their site. Fill in your name and email on their form, then paste the subject and message.</p><div class="subj"><span><small>Subject</small>${esc(formSubject(l))}</span><button class="btn sm" type="button" data-copy="subject" data-id="${esc(l.id)}">${ic("copy")}Copy subject</button></div><div class="txt">${esc(formDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="form" data-id="${esc(l.id)}">${ic("copy")}Copy message</button><a class="btn sm" href="${esc(formUrl)}" target="_blank" rel="noopener noreferrer">${ic("out")}${safeUrl(l.contactForm)?"Open their contact form":"Open their website"}</a></div></details>`:""}
     ${l.email?`<details class="script" open><summary>${tile("mail","mail")}Ready-to-send email</summary><div class="txt">${esc(emailDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="draft" data-id="${esc(l.id)}">${ic("copy")}Copy email</button><span class="note">Check each point on their site first.</span></div></details>`:""}
     ${l.email&&st(l)==="contacted"?`<details class="script"${isDue(l)?" open":""}><summary>${tile("undo","mail")}Follow-up email${isDue(l)?' <span class="note">due now</span>':""}</summary><div class="txt">${esc(followUpDraft(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="followup" data-id="${esc(l.id)}">${ic("copy")}Copy follow-up</button><button class="btn sm" type="button" data-followed="${esc(l.id)}">${ic("check")}Mark followed up</button></div></details>`:""}
     ${l.phone?`<details class="script" ${l.email?"":"open"}><summary>${tile("phone","phone")}What to say on the phone</summary><div class="txt">${esc(callScript(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="script" data-id="${esc(l.id)}">${ic("copy")}Copy script</button></div></details>`:""}
@@ -926,7 +930,7 @@ document.addEventListener("click",e=>{
     if(t.dataset.followed)return markFollowed(t.dataset.followed,t);
     if(t.dataset.open)return openSheet(t.dataset.open);
     if(t.dataset.copy){const l=leads.find(x=>x.id===t.dataset.id);if(!l)return;const k=t.dataset.copy;
-      if(k==="draft")return copy(emailDraft(l),"Email",t);if(k==="form")return copy(formDraft(l),"Message",t);if(k==="followup")return copy(followUpDraft(l),"Follow-up email",t);if(k==="script")return copy(callScript(l),"Phone script",t);return copy(l[k],k==="email"?"Email address":"Phone number",t)}
+      if(k==="draft")return copy(emailDraft(l),"Email",t);if(k==="form")return copy(formDraft(l),"Message",t);if(k==="subject")return copy(formSubject(l),"Subject",t);if(k==="followup")return copy(followUpDraft(l),"Follow-up email",t);if(k==="script")return copy(callScript(l),"Phone script",t);return copy(l[k],k==="email"?"Email address":"Phone number",t)}
     return;
   }
   if(e.target.closest("a"))return;
