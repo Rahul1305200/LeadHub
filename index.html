@@ -312,6 +312,7 @@ a.btn{text-decoration:none}
 .kv .kl{width:100%;font-size:var(--t-xs);color:var(--muted);line-height:1.3}
 .kv .miss{color:var(--fg-2)}
 .kv .tag{font-size:var(--t-s);color:var(--k-stale)}
+.kv .tag.ok{color:var(--k-phone)}
 .kv a{color:var(--fg);text-underline-offset:3px;text-decoration-color:var(--pink-line)}
 .kv .copy{margin-left:0}
 details.script{background:var(--card);border-radius:var(--r-in)}
@@ -750,7 +751,7 @@ function renderSheet(focus){
         return `<li>${tile(KIND_ICON[k],k,"md")}<div>${t&&t!==x?`<b>${esc(t)}</b>`:""}<p>${esc(x)}</p></div></li>`}).join("")||"<li><div><p>Nothing specific found yet</p></div></li>"}</ul></section>
     <section class="s-sec"><h3>How to reach them</h3><div class="kv">
       ${l.contactName?`${tile("user","user","md")}<div><span class="kl">Owner</span>${esc(l.contactName)}${l.contactTitle?`<span class="miss">· ${esc(l.contactTitle)}</span>`:""}</div>`:""}
-      ${tile("mail","mail","md")}<div><span class="kl">Email</span>${l.email?`${esc(l.email)}<button class="copy" type="button" data-copy="email" data-id="${esc(l.id)}" aria-label="Copy email">${ic("copy")}</button>${l.emailStatus==="verified"?"":`<span class="tag">Not verified yet</span>`}`:`<span class="miss">Not found yet</span>`}</div>
+      ${tile("mail","mail","md")}<div><span class="kl">Email</span>${l.email?`${esc(l.email)}<button class="copy" type="button" data-copy="email" data-id="${esc(l.id)}" aria-label="Copy email">${ic("copy")}</button>${l.emailStatus==="verified"?`<span class="tag ok">Verified</span>`:l.emailStatus==="risky"?`<span class="tag">May bounce: their server accepts any address</span>`:`<span class="tag">Not verified yet</span>`}`:`<span class="miss">Not found yet</span>`}</div>
       ${tile("phone","phone","md")}<div><span class="kl">Phone</span>${l.phone?`${esc(l.phone)}<button class="copy" type="button" data-copy="phone" data-id="${esc(l.id)}" aria-label="Copy phone number">${ic("copy")}</button>`:`<span class="miss">Not listed</span>`}</div>
       ${tile("link","link","md")}<div><span class="kl">Website</span>${site?`<a href="${esc(site)}" target="_blank" rel="noopener noreferrer">${esc(l.domain||site)}</a>`:`<span class="miss">None</span>`}</div>
       ${safeUrl(l.contactForm)?`${tile("form","form","md")}<div><span class="kl">Contact form</span><a href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">Open their contact form</a></div>`:""}
