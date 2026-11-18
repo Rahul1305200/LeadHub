@@ -28,11 +28,15 @@
   --t-xs:13px; --t-s:14.5px; --t-m:15px; --t-l:22px; --t-xl:28px; --t-xxl:44px;
   --shadow:0 20px 50px rgba(0,0,0,.45);
   --font:"Satoshi",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --glass:rgba(15,15,18,.56); --glass-strong:rgba(15,15,18,.74); --glass-card:rgba(24,24,28,.62); --row:rgba(28,28,33,.78); --row-h:rgba(40,40,46,.86);
+  --rim:linear-gradient(150deg,rgba(255,255,255,.26),rgba(255,255,255,.05) 34%,rgba(255,255,255,0) 60%,rgba(255,92,157,.22));
+  --blur:blur(28px) saturate(160%);
   --e-out:cubic-bezier(.16,1,.3,1); --e-in:cubic-bezier(.4,0,1,1); --mv:1;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{background:var(--ground);color:var(--fg);font-family:var(--font);font-size:var(--t-m);line-height:1.5;-webkit-font-smoothing:antialiased;touch-action:manipulation;caret-color:var(--pink)}
+html{background:var(--ground)}
+body{background:transparent;color:var(--fg);font-family:var(--font);font-size:var(--t-m);line-height:1.5;-webkit-font-smoothing:antialiased;touch-action:manipulation;caret-color:var(--pink)}
 ::selection{background:rgba(255,92,157,.35)}
 *{scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
 button,input,textarea{font:inherit;color:inherit}
@@ -45,11 +49,29 @@ button{cursor:pointer}
 svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .muted{color:var(--muted)}
 
+/* Living background: Paper Shaders mesh gradient (ShaderGradient look). CSS glow is the fallback and the reduced-motion still. */
+#bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  background:radial-gradient(55% 45% at 82% 8%,rgba(219,39,119,.30),transparent 70%),radial-gradient(45% 55% at 8% 92%,rgba(143,29,82,.34),transparent 70%),radial-gradient(40% 40% at 45% 55%,rgba(58,11,36,.55),transparent 75%),var(--ground)}
+#bg canvas{position:absolute!important;inset:0;width:100%!important;height:100%!important;opacity:0;transition:opacity 1.4s var(--e-out)}
+#bg.live canvas{opacity:1}
+#bg::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(0,0,0,.55))}
+
+/* Liquid glass: live backdrop blur + specular rim (Liquid Glass JS look, without page snapshots) */
+.side,.top,.panel,.card,.sheet,.col,.pop{position:relative;background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 70px rgba(0,0,0,.35)}
+.card{background:var(--glass-card)}
+.sheet,.pop{background:var(--glass-strong)}
+.side::after,.top::after,.panel::after,.card::after,.sheet::after,.col::after,.pop::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:var(--rim);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);pointer-events:none}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.side,.top,.panel,.card,.sheet,.col,.pop{background:rgba(17,17,19,.96)}}
+
 /* Shell */
 .app{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;min-height:100%;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.side{background:var(--panel);border-radius:var(--r-panel);padding:26px 18px 20px;display:flex;flex-direction:column;gap:26px;position:sticky;top:16px;height:calc(100vh - 32px);height:calc(100dvh - 32px)}
+.side{border-radius:var(--r-panel);padding:26px 18px 20px;display:flex;flex-direction:column;gap:26px;position:sticky;top:16px;height:calc(100vh - 32px);height:calc(100dvh - 32px)}
 .brand{display:flex;align-items:center;gap:12px;padding:0 10px 22px;border-bottom:1px solid var(--line)}
-.brand .mark{width:38px;height:38px;border-radius:12px;background:var(--pink-btn);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px;flex:none}
+.brand .mark{position:relative;width:44px;height:44px;border-radius:14px;background:radial-gradient(120% 120% at 30% 20%,#ff5c9d,#db2777 45%,#5c0f33);color:#fff;display:grid;place-items:center;font-weight:700;font-size:20px;flex:none;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 24px rgba(219,39,119,.35)}
+.brand .mark canvas{position:absolute!important;inset:2px;width:calc(100% - 4px)!important;height:calc(100% - 4px)!important;opacity:0;transition:opacity .8s var(--e-out)}
+.brand .mark.live canvas{opacity:1}
+.brand .mark.live .mark-n{opacity:0}
+.mark-n{transition:opacity .6s}
 .brand b{display:block;font-size:20px;font-weight:500;letter-spacing:-.01em;line-height:1.2}
 .brand small{display:block;color:var(--muted);font-size:var(--t-xs)}
 .nav{display:flex;flex-direction:column;gap:4px;margin:0;padding:0;list-style:none}
@@ -66,7 +88,7 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 .side-foot p a{color:inherit}
 
 .main{min-width:0;display:flex;flex-direction:column;gap:16px}
-.top{background:var(--panel);border-radius:var(--r-panel);padding:14px 16px;display:flex;align-items:center;gap:12px}
+.top{border-radius:var(--r-panel);padding:14px 16px;display:flex;align-items:center;gap:12px}
 .menu{display:none;width:44px;height:44px;border-radius:999px;border:0;background:var(--card);place-items:center;flex:none;color:var(--fg)}
 .search{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 12px;min-height:46px;width:min(440px,100%);color:var(--muted);transition:border-color .15s}
 .search:focus-within{border-color:var(--pink-line)}
@@ -88,7 +110,7 @@ a.btn{text-decoration:none}
 .btn.sm.icon{width:36px}
 
 .content{display:flex;flex-direction:column;gap:16px;min-width:0}
-.panel{background:var(--panel);border-radius:var(--r-panel);padding:24px}
+.panel{border-radius:var(--r-panel);padding:24px}
 
 /* Dashboard */
 .hero{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:26px 28px}
@@ -101,7 +123,7 @@ a.btn{text-decoration:none}
 .hero .greet em{font-style:normal}
 .cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .cards2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.card{background:var(--card);border-radius:var(--r-card);padding:26px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.card{border-radius:var(--r-card);padding:26px;display:flex;flex-direction:column;gap:18px;min-width:0}
 .card-h{display:flex;align-items:flex-start;gap:12px}
 .card-h h2{margin:0;font-size:var(--t-xl);font-weight:500;letter-spacing:-.01em;line-height:1.2}
 .card-h .go{margin-left:auto;width:40px;height:40px;border-radius:50%;border:0;background:transparent;color:var(--fg);display:grid;place-items:center;flex:none}
@@ -125,6 +147,13 @@ a.btn{text-decoration:none}
 .hbar .n{text-align:right;color:var(--fg);font-weight:500}
 .cap-line{margin:auto 0 0;font-size:var(--t-s);color:var(--muted)}
 .cap-line b{color:var(--fg-2);font-weight:500}
+/* All-done state */
+.donebox{display:flex;align-items:center;gap:16px}
+.donebox b{display:block;font-size:var(--t-xl);font-weight:500;line-height:1.2}
+.donebox span{color:var(--fg-2)}
+.dcheck{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--pink-btn);color:#fff;flex:none;box-shadow:0 10px 30px rgba(219,39,119,.45)}
+.dcheck svg.i{width:26px;height:26px}
+.follow.due{box-shadow:inset 0 0 0 1px var(--pink-line),0 30px 70px rgba(0,0,0,.35)}
 /* Hero week numbers */
 .wk{display:flex;gap:36px;margin:0}
 .wk div{display:flex;flex-direction:column-reverse}
@@ -145,14 +174,14 @@ a.btn{text-decoration:none}
 .badge{display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 10px;border-radius:999px;background:var(--pink-btn);color:#fff;font-weight:500;font-size:var(--t-m)}
 .fu-note{margin:0 0 0 auto;font-size:var(--t-s);color:var(--muted)}
 .frows{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
-.frow{display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;border-radius:var(--r-in);background:var(--card-2);cursor:pointer;transition:background-color .15s}
+.frow{display:flex;align-items:center;gap:14px;padding:10px 10px 10px 12px;border-radius:var(--r-in);background:var(--row);cursor:pointer;transition:background-color .15s}
 .frow:hover{background:var(--card-3)}
 .frow .fw{flex:1;min-width:0}
 .frow .name{all:unset;cursor:pointer;display:block;font-weight:500;overflow-wrap:anywhere}
 .frow .name:focus-visible{outline:2px solid var(--pink);outline-offset:2px;border-radius:4px}
 .frow .fw span{font-size:var(--t-s);color:var(--muted)}
 .frow .fa{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.fu-empty{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:var(--r-in);background:var(--card-2);color:var(--muted);font-size:var(--t-s)}
+.fu-empty{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:var(--r-in);background:var(--row);color:var(--muted);font-size:var(--t-s)}
 .fu-empty svg.i{width:24px;height:24px;color:var(--s-replied);flex:none}
 .fu-empty b{color:var(--fg);font-weight:500}
 .pinklink{display:inline-flex;align-items:center;gap:10px;border:0;background:transparent;color:var(--pink);font-weight:500;text-align:left;padding:0}
@@ -188,7 +217,7 @@ a.btn{text-decoration:none}
 .dd.status{width:100%;min-height:38px;font-size:var(--t-s);padding:0 10px 0 12px;border-color:transparent;background:color-mix(in srgb,var(--sc) 14%,transparent);color:var(--sc)}
 .dd.status:hover{border-color:color-mix(in srgb,var(--sc) 40%,transparent)}
 .dd.range{min-height:36px;font-size:var(--t-s);padding:0 12px 0 14px}
-.pop{position:fixed;z-index:40;background:var(--card-2);border:1px solid var(--line-2);border-radius:16px;box-shadow:var(--shadow);padding:6px;max-height:min(360px,60vh);overflow-y:auto;overscroll-behavior:contain;animation:popin .14s cubic-bezier(.2,.8,.2,1)}
+.pop{position:fixed;z-index:40;border-radius:16px;box-shadow:var(--shadow);padding:6px;max-height:min(360px,60vh);overflow-y:auto;overscroll-behavior:contain;animation:popin .14s cubic-bezier(.2,.8,.2,1)}
 .pop:focus,.pop:focus-visible{outline:none}
 @keyframes popin{from{opacity:0;transform:translateY(calc(-6px*var(--mv))) scale(calc(1 - .03*var(--mv)))}to{opacity:1;transform:none}}
 .pop .opt{display:flex;align-items:center;gap:10px;width:100%;min-height:42px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:var(--fg);font-weight:500;text-align:left}
@@ -217,8 +246,8 @@ a.btn{text-decoration:none}
 .ghead p{margin:0 0 0 auto;color:var(--muted);font-size:var(--t-s)}
 .rows{display:flex;flex-direction:column;gap:8px}
 .rows.call{--reach:200px}
-.lrow{display:grid;grid-template-columns:minmax(240px,1.1fr) minmax(300px,1.9fr) var(--reach,96px) 40px;grid-template-areas:"who what reach go";gap:20px;align-items:center;padding:14px 14px 14px 14px;background:var(--card);border-radius:var(--r-card);cursor:pointer;transition:background-color .15s}
-.lrow:hover{background:var(--card-2)}
+.lrow{display:grid;grid-template-columns:minmax(240px,1.1fr) minmax(300px,1.9fr) var(--reach,96px) 40px;grid-template-areas:"who what reach go";gap:20px;align-items:center;padding:14px 14px 14px 14px;background:var(--row);border-radius:var(--r-card);cursor:pointer;transition:background-color .15s}
+.lrow:hover{background:var(--row-h)}
 .lrow .who{grid-area:who}.lrow .what{grid-area:what}.lrow .reach{grid-area:reach}.lrow .go{grid-area:go}
 .mono.sm{width:48px;height:48px;border-radius:14px;font-size:20px}
 .mono.xs{width:34px;height:34px;border-radius:10px;font-size:15px}
@@ -259,7 +288,7 @@ a.btn{text-decoration:none}
 .board-wrap{overflow-x:auto;padding-bottom:8px}
 .board-wrap.more-right{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 56px),transparent)}
 .board{display:grid;grid-template-columns:repeat(7,minmax(250px,1fr));gap:12px;min-width:min-content}
-.col{background:var(--panel);border-radius:var(--r-panel);padding:14px;display:flex;flex-direction:column;gap:12px;align-self:start;transition:box-shadow .15s}
+.col{border-radius:var(--r-panel);padding:14px;display:flex;flex-direction:column;gap:12px;align-self:start;transition:box-shadow .15s}
 .col.drop{box-shadow:inset 0 0 0 2px var(--pink)}
 .col h3{margin:0;padding:8px 8px 6px;font-size:17px;font-weight:500;display:flex;align-items:center;gap:12px;white-space:nowrap;color:var(--fg)}
 .col h3 .ib{--ib:var(--sc);width:36px;height:36px;border-radius:50%}
@@ -267,19 +296,19 @@ a.btn{text-decoration:none}
 .col h3 .cl{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .col h3 .num{margin-left:auto;color:var(--muted);font-weight:500}
 .col-list{display:flex;flex-direction:column;gap:8px;max-height:68vh;overflow-y:auto;overscroll-behavior:contain}
-.bcard{background:var(--card);border-radius:var(--r-in);padding:12px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:background-color .15s,transform .15s}
+.bcard{background:var(--row);border-radius:var(--r-in);padding:12px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:background-color .15s,transform .15s}
 .bcard:hover{background:var(--card-2);transform:translateY(-2px)}
 .bcard[draggable="true"]{cursor:grab}
 .bcard>div{min-width:0}
 .bcard .name{all:unset;cursor:pointer;display:block;font-weight:500;line-height:1.35;overflow-wrap:anywhere}
 .bcard .name:focus-visible{outline:2px solid var(--pink);outline-offset:2px;border-radius:4px}
 .bcard .sub{font-size:var(--t-xs);color:var(--muted);line-height:1.4;margin-top:2px}
-.empty-col{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:var(--t-s);color:var(--muted);text-align:center;padding:26px 10px;border-radius:var(--r-in);background:var(--card)}
+.empty-col{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:var(--t-s);color:var(--muted);text-align:center;padding:26px 10px;border-radius:var(--r-in);background:var(--row)}
 
 /* Lead panel */
-.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:20;animation:fade .18s ease-out}
+.scrim{position:fixed;inset:0;background:rgba(4,4,6,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:20;animation:fade .18s ease-out}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-.sheet{position:fixed;top:12px;right:12px;bottom:12px;width:min(580px,calc(100% - 24px));background:var(--panel);border-radius:var(--r-panel);z-index:21;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;animation:slide .32s var(--e-out)}
+.sheet{position:fixed;top:12px;right:12px;bottom:12px;width:min(580px,calc(100% - 24px));border-radius:var(--r-panel);z-index:21;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;animation:slide .32s var(--e-out)}
 @keyframes slide{from{transform:translateX(calc(40px*var(--mv)));opacity:0}to{transform:none;opacity:1}}
 .sheet-ghost{position:absolute;inset:0;display:flex;flex-direction:column;pointer-events:none}
 .s-head{padding:24px 24px 18px;display:flex;flex-direction:column;gap:16px;border-bottom:1px solid var(--line)}
@@ -295,7 +324,25 @@ a.btn{text-decoration:none}
 .s-actions .btn.pink{flex:1 1 200px}
 .s-actions .dd.status{flex:1 1 180px;width:auto;min-height:48px;font-size:var(--t-m)}
 .s-actions .btn.next{min-height:48px}
-.s-body{padding:22px 24px 34px;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:22px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,255,255,.04);border-radius:999px;padding:4px}
+.step{display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;border:0;border-radius:999px;background:transparent;color:var(--muted);font-weight:500;transition:background-color .2s,color .2s}
+.step:hover{color:var(--fg)}
+.step .sn{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;border:1px solid var(--line-2);color:var(--fg-2)}
+.step .sn svg.i{width:13px;height:13px}
+.step.on{background:rgba(255,255,255,.1);color:var(--fg)}
+.step.on .sn{background:var(--pink-btn);border-color:var(--pink-btn);color:#fff}
+.step.done .sn{background:rgba(255,92,157,.16);border-color:transparent;color:var(--pink)}
+.s-foot{padding:14px 24px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:rgba(10,10,12,.35)}
+.s-foot .btn{min-height:48px;text-decoration:none}
+.s-foot .btn.pink{flex:1 1 220px}
+.s-foot .dd.status{flex:1 1 200px;width:auto;min-height:48px;font-size:var(--t-m)}
+.btn.ghost{border-color:transparent;color:var(--fg-2)}
+.btn.ghost:hover{color:var(--fg);background:rgba(255,255,255,.06)}
+.sh:focus{outline:none}
+.step-hint{margin:0 0 12px;color:var(--fg-2);font-size:var(--t-s);line-height:1.55}
+.st-row{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.st-row .kl{font-size:var(--t-xs);color:var(--muted)}
+.s-body{flex:1;padding:22px 24px 34px;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:22px}
 .s-sec h3{margin:0 0 12px;font-size:var(--t-s);font-weight:500;color:var(--muted)}
 .pitchbox{display:flex;gap:14px;align-items:center;background:var(--card);border-radius:var(--r-in);padding:16px}
 .pitchbox b{display:block;font-size:18px;font-weight:500}
@@ -377,7 +424,7 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
   .app{gap:12px;padding-block:12px}
   .top{padding:10px}
   .top .btn.pink span{display:none}.top .btn.pink{width:44px;padding:0}
-  .hero{padding:20px;gap:16px}.date{width:76px;height:76px;font-size:30px}.hero .sep{display:none}.hero .day,.hero .greet b,.hero .greet span{font-size:var(--t-l)}
+  .hero{padding:20px;gap:16px}.date{width:76px;height:76px;font-size:30px}.hero .sep{display:none}.hero .day,.hero .greet b,.hero .greet span,.donebox b{font-size:var(--t-l)}.dcheck{width:42px;height:42px}
   .card{padding:20px}.card-h h2{font-size:var(--t-l)}.gnum .big{font-size:44px}.wk{gap:22px;width:100%}.wk dd{font-size:var(--t-l)}.frow{flex-wrap:wrap}.frow .fa{width:100%;justify-content:flex-start}.fu-note{margin-left:0;width:100%}
   .seg{width:100%;flex-wrap:wrap;border-radius:18px}.seg button{flex:1 1 40%;justify-content:center}
   .tb-right{width:100%}.tb-right .dd{flex:1 1 40%;min-width:0}
@@ -433,9 +480,10 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
 </svg>
 
 <a class="skip" href="#content">Skip to content</a>
+<div id="bg" aria-hidden="true"></div>
 <div class="app">
   <aside class="side" id="side" aria-label="Lead Hub">
-    <div class="brand"><span class="mark" aria-hidden="true">N</span><div><b>NurAndCode</b><small>Lead Hub</small></div></div>
+    <div class="brand"><span class="mark" id="brand-mark" aria-hidden="true"><span class="mark-n">N</span></span><div><b>NurAndCode</b><small>Lead Hub</small></div></div>
     <nav aria-label="Pages"><ul class="nav" id="nav">
       <li><a href="#dashboard" data-view="dashboard"><svg class="i" aria-hidden="true"><use href="#i-squares"/></svg>Dashboard</a></li>
       <li><a href="#leads" data-view="leads"><svg class="i" aria-hidden="true"><use href="#i-browser"/></svg>Leads<span class="count num" id="c-leads"></span></a></li>
@@ -490,6 +538,16 @@ const RM=()=>matchMedia("(prefers-reduced-motion: reduce)").matches, EOUT="cubic
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const st=l=>l.status||"new";
+const STEPS=[["1","Read"],["2","Send"],["3","Log"]];
+let sheetStep=1, sheetStepFor=null; const notesDraft={};
+const defaultStep=l=>isDue(l)?2:st(l)==="new"?1:3;
+function setStep(n){
+  if(!openId||n===sheetStep)return; const dir=n>sheetStep?1:-1;
+  const ta=$("#notes"); if(ta)notesDraft[openId]=ta.value;
+  sheetStep=n; renderSheet(false);
+  const b=$("#sheet .s-body"); if(b&&!RM())b.animate([{opacity:0,transform:`translateX(${dir*28}px)`},{opacity:1,transform:"none"}],{duration:300,easing:EOUT});
+  if(b)b.scrollTop=0; $("#sheet .sh")?.focus({preventScroll:true});
+}
 const fitOf=l=>l.fit||(l.score>=70?"Strong fit":l.score>=50?"Good fit":"Possible");
 const fitCls=f=>(FITS.find(x=>x[0]===f)||FITS[2])[1];
 const ic=(id,cls="i")=>`<svg class="${cls}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
@@ -595,19 +653,26 @@ function renderDashboard(){
     return `<li class="frow" data-row="${esc(l.id)}">${monoT(l,"xs")}<div class="fw"><button class="name" type="button" data-open="${esc(l.id)}">${esc(l.name)}</button><span>${l.followUps?`Followed up ${l.followUps===1?"once":l.followUps+" times"}, `:"Contacted "}${days} days ago · no reply</span></div>
       <div class="fa">${l.email?`<button class="btn sm" type="button" data-copy="followup" data-id="${esc(l.id)}">${ic("copy")}Copy follow-up</button>`:l.phone?`<button class="btn sm" type="button" data-copy="phone" data-id="${esc(l.id)}">${ic("phone")}Copy phone</button>`:""}
       <button class="btn sm" type="button" data-followed="${esc(l.id)}">${ic("check")}Followed up</button></div></li>`}).join("");
-  const fuCard=`<article class="card follow"><div class="card-h"><h2>Follow-ups due</h2>${due.length?`<span class="badge num" data-count="due">${due.length}</span>`:""}<p class="fu-note">${soon?`${nf.format(soon)} more due in the next few days`:"Leads show up here 3 days after you contact them"}</p></div>
+  const fuCard=`<article class="card follow${due.length?" due":""}"><div class="card-h"><h2>Follow-ups due</h2>${due.length?`<span class="badge num" data-count="due">${due.length}</span>`:""}<p class="fu-note">${soon?`${nf.format(soon)} more due in the next few days`:"Leads show up here 3 days after you contact them"}</p></div>
       ${due.length?`<ul class="frows">${fuRows}</ul>${due.length>5?`<p class="cap-line"><b class="num">${due.length-5}</b> more due. Oldest first.</p>`:""}`
         :`<div class="fu-empty">${ic("check-c")}<span><b>Nothing to follow up yet.</b> When someone you contacted hasn't replied after 3 days, they appear here with a ready follow-up email.</span></div>`}</article>`;
 
-  return `<section class="panel hero" aria-label="Today">
+  const doneToday=done>=goal;
+  return `<section class="panel hero${doneToday?" alldone":""}" aria-label="Today">
       <div class="date num" aria-hidden="true">${now.getDate()}</div>
       <div class="day">${now.toLocaleDateString(undefined,{weekday:"short"})},<br>${now.toLocaleDateString(undefined,{month:"long"})}</div>
       <span class="sep" aria-hidden="true"></span>
-      <dl class="wk" aria-label="This week"><div><dt>Contacted this week</dt><dd class="num" data-count="sent">${nf.format(sent)}</dd></div><div><dt>Replies</dt><dd class="num" data-count="replies">${nf.format(replies)}</dd></div><div><dt>Calls booked</dt><dd class="num" data-count="calls">${nf.format(calls)}</dd></div></dl>
-      <div class="greet"><b>${hi}, Nur</b><span><em class="num" data-count="waiting">${nf.format(waiting)}</em> strong ${waiting===1?"lead":"leads"} waiting</span></div>
+      ${doneToday?`<div class="donebox"><span class="dcheck" aria-hidden="true">${ic("check")}</span><div><b>Today's goal is done</b><span><span class="num">${nf.format(done)}</span> contacted${strk>1?` · <span class="num">${strk}</span>-day streak`:""}</span></div></div>
+      <div class="greet"><b>Nice work, Nur</b><span>${nx?`Tomorrow starts with ${esc(nx.name)}`:"Everyone's been contacted"}</span></div>
     </section>
+    ${due.length?fuCard:""}
     <div class="cards3">${nextCard}${goalCard}${pipeCard}</div>
-    ${fuCard}`;
+    ${due.length?"":fuCard}`:`<dl class="wk" aria-label="This week"><div><dt>Contacted this week</dt><dd class="num" data-count="sent">${nf.format(sent)}</dd></div><div><dt>Replies</dt><dd class="num" data-count="replies">${nf.format(replies)}</dd></div><div><dt>Calls booked</dt><dd class="num" data-count="calls">${nf.format(calls)}</dd></div></dl>
+      <div class="greet"><b>${hi}, Nur</b><span>${due.length?`<em class="num" data-count="due">${nf.format(due.length)}</em> ${due.length===1?"follow-up":"follow-ups"} due today`:`<em class="num" data-count="waiting">${nf.format(waiting)}</em> strong ${waiting===1?"lead":"leads"} waiting`}</span></div>
+    </section>
+    ${due.length?fuCard:""}
+    <div class="cards3">${nextCard}${goalCard}${pipeCard}</div>
+    ${due.length?"":fuCard}`}`;
 }
 
 /* Lists */
@@ -731,7 +796,7 @@ function callScript(l){
 /* Lead panel */
 function renderSheet(focus){
   const l=leads.find(x=>x.id===openId), d=$("#sheet"); if(!l){closeSheet();return}
-  const site=safeUrl(l.website), notesNow=focus?(l.notes||""):($("#notes")?.value??l.notes??"");
+  const site=safeUrl(l.website), notesNow=(!focus&&$("#notes"))?$("#notes").value:(notesDraft[l.id]??l.notes??"");
   const det=(l.details&&l.details.length?l.details:(l.reasons||[])), rs=l.reasons||[], nx=nextLead(l.id);
   const primary=st(l)==="new"
     ?`<button class="btn pink" type="button" id="mark" ${canWrite?"":"disabled"}>${ic("check-c")}Mark contacted${nx?" & next":""}</button>`
@@ -742,14 +807,20 @@ function renderSheet(focus){
     :l.phone?`<button class="btn" type="button" data-copy="phone" data-id="${esc(l.id)}">${ic("phone")}Copy phone</button>`
     :safeUrl(l.contactForm)?`<a class="btn" href="${esc(safeUrl(l.contactForm))}" target="_blank" rel="noopener noreferrer">${ic("form")}Open form</a>`:"";
   const left=queue().filter(x=>x.id!==l.id).length;
+  if(sheetStepFor!==l.id){sheetStep=defaultStep(l);sheetStepFor=l.id}
+  const S=sheetStep, contactPink=contact.replace('class="btn"','class="btn pink"');
+  const foot=S===1?`<button class="btn pink" type="button" data-step="2">Next: send${ic("arrowr")}</button><button class="btn ghost" type="button" id="go-next" ${nx?"":"disabled"}>Skip lead</button>`
+    :S===2?`${contactPink||""}<button class="btn" type="button" data-step="3">Next: log it${ic("arrowr")}</button>`
+    :`${primary}<button class="btn next" type="button" id="go-next" ${nx?"":"disabled"}>Next lead${ic("arrowr")}</button>`;
+  const steps=STEPS.map(([n,t])=>`<button type="button" class="step${+n===S?" on":+n<S?" done":""}" data-step="${n}" ${+n===S?'aria-current="step"':""}><span class="sn">${+n<S?ic("check"):n}</span>${t}</button>`).join("");
   d.innerHTML=`<div class="s-head"><div class="s-top"><div style="min-width:0"><h2 id="sheet-title" tabindex="-1">${esc(l.name)}</h2><p>${fitPill(l)}<span>${esc(l.trade)} · ${esc(l.city)}</span><span class="left">${nf.format(left)} ${left===1?"lead":"leads"} left to contact</span></p></div><button class="close" id="s-close" type="button" aria-label="Close">${ic("x")}</button></div>
-    <div class="s-actions">${primary}${contact}<button class="btn next" type="button" id="go-next" ${nx?"":"disabled"}>Next${ic("arrowr")}</button></div></div>
-  <div class="s-body">
-    <section class="s-sec"><h3>What to pitch</h3><div class="pitchbox">${tile("bulb","bulb","md")}<div><b>${esc(l.pitch||"Free website audit")}</b><span>Open with a free audit, then offer this.</span></div></div></section>
+    <nav class="steps" aria-label="Steps for this lead">${steps}</nav></div>
+  <div class="s-body" data-s="${S}">
+    ${S===1?`<section class="s-sec"><h3 tabindex="-1" class="sh">What to pitch</h3><div class="pitchbox">${tile("bulb","bulb","md")}<div><b>${esc(l.pitch||"Free website audit")}</b><span>Open with a free audit, then offer this.</span></div></div></section>
     ${l.caution?`<div class="caution">${ic("warn")}<span>${esc(l.caution)}. They may be harder to win.</span></div>`:""}
     <section class="s-sec"><h3>What's wrong with their website</h3><ul class="dlist">${(l.problems&&l.problems.length?l.problems.map(pr=>({k:probKind(pr.title),t:pr.title,x:pr.text})):det.map(x=>({x}))).map(({k:k0,t:t0,x})=>{const k=k0||probKind(x),t=t0||rs.find(r=>probKind(r)===k&&k!=="other")||(/ai search/i.test(x)?"Hidden from AI search":/wordpress/i.test(x)?"Runs on WordPress":"");
-        return `<li>${tile(KIND_ICON[k],k,"md")}<div>${t&&t!==x?`<b>${esc(t)}</b>`:""}<p>${esc(x)}</p></div></li>`}).join("")||"<li><div><p>Nothing specific found yet</p></div></li>"}</ul></section>
-    <section class="s-sec"><h3>How to reach them</h3><div class="kv">
+        return `<li>${tile(KIND_ICON[k],k,"md")}<div>${t&&t!==x?`<b>${esc(t)}</b>`:""}<p>${esc(x)}</p></div></li>`}).join("")||"<li><div><p>Nothing specific found yet</p></div></li>"}</ul></section>`:""}
+    ${S===2?`<section class="s-sec"><h3 tabindex="-1" class="sh">How to reach them</h3><div class="kv">
       ${l.contactName?`${tile("user","user","md")}<div><span class="kl">Owner</span>${esc(l.contactName)}${l.contactTitle?`<span class="miss">· ${esc(l.contactTitle)}</span>`:""}</div>`:""}
       ${tile("mail","mail","md")}<div><span class="kl">Email</span>${l.email?`${esc(l.email)}<button class="copy" type="button" data-copy="email" data-id="${esc(l.id)}" aria-label="Copy email">${ic("copy")}</button>${l.emailStatus==="verified"?`<span class="tag ok">Verified</span>`:l.emailStatus==="risky"?`<span class="tag">May bounce: their server accepts any address</span>`:`<span class="tag">Not verified yet</span>`}`:`<span class="miss">Not found yet</span>`}</div>
       ${tile("phone","phone","md")}<div><span class="kl">Phone</span>${l.phone?`${esc(l.phone)}<button class="copy" type="button" data-copy="phone" data-id="${esc(l.id)}" aria-label="Copy phone number">${ic("copy")}</button>`:`<span class="miss">Not listed</span>`}</div>
@@ -759,11 +830,12 @@ function renderSheet(focus){
     ${!l.email&&site?`<details class="script" open><summary>${tile("form","form")}Message for their website</summary><p class="howto">No email found, so send this through the contact form on their site. Fill in your name and email on their form, then paste the subject and message.</p><div class="subj"><span><small>Subject</small>${esc(formSubject(l))}</span><button class="btn sm" type="button" data-copy="subject" data-id="${esc(l.id)}">${ic("copy")}Copy subject</button></div><div class="txt">${esc(formDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="form" data-id="${esc(l.id)}">${ic("copy")}Copy message</button><a class="btn sm" href="${esc(formUrl)}" target="_blank" rel="noopener noreferrer">${ic("out")}${safeUrl(l.contactForm)?"Open their contact form":"Open their website"}</a></div></details>`:""}
     ${l.email?`<details class="script" open><summary>${tile("mail","mail")}Ready-to-send email</summary><div class="txt">${esc(emailDraft(l))}</div><div class="row"><button class="btn pink sm" type="button" data-copy="draft" data-id="${esc(l.id)}">${ic("copy")}Copy email</button><span class="note">Check each point on their site first.</span></div></details>`:""}
     ${l.email&&st(l)==="contacted"?`<details class="script"${isDue(l)?" open":""}><summary>${tile("undo","mail")}Follow-up email${isDue(l)?' <span class="note">due now</span>':""}</summary><div class="txt">${esc(followUpDraft(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="followup" data-id="${esc(l.id)}">${ic("copy")}Copy follow-up</button><button class="btn sm" type="button" data-followed="${esc(l.id)}">${ic("check")}Mark followed up</button></div></details>`:""}
-    ${l.phone?`<details class="script" ${l.email?"":"open"}><summary>${tile("phone","phone")}What to say on the phone</summary><div class="txt">${esc(callScript(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="script" data-id="${esc(l.id)}">${ic("copy")}Copy script</button></div></details>`:""}
-    ${st(l)==="new"?`<section class="s-sec"><h3><label for="sheet-status">Status</label></h3>${statusDD(l,"sheet-status")}</section>`:""}
+    ${l.phone?`<details class="script" ${l.email||site?"":"open"}><summary>${tile("phone","phone")}What to say on the phone</summary><div class="txt">${esc(callScript(l))}</div><div class="row"><button class="btn sm" type="button" data-copy="script" data-id="${esc(l.id)}">${ic("copy")}Copy script</button></div></details>`:""}`:""}
+    ${S===3?`<section class="s-sec"><h3 tabindex="-1" class="sh">${st(l)==="new"?"Sent it? Log it and move on":"Where it stands"}</h3><p class="step-hint">${st(l)==="new"?"Mark it contacted below and the next lead opens. Follow-up shows on the dashboard in 3 days if they don't reply.":"Change the status when they reply, book a call or say no."}</p>${st(l)==="new"?`<div class="st-row"><label for="sheet-status" class="kl">Or set another status</label>${statusDD(l,"sheet-status")}</div>`:""}</section>
     <section class="s-sec"><h3><label for="notes">Your notes</label></h3><textarea id="notes" placeholder="Called Tuesday, left a voicemail…" ${canWrite?"":"disabled"}>${esc(notesNow)}</textarea><div class="row"><button class="btn sm" type="button" id="save-notes" ${canWrite?"":"disabled"}>Save notes</button><span class="note" id="notes-state" role="status"></span></div></section>
-    <p class="note">Found ${esc(fmtDate(l.foundAt))} in public business listings and on their own website.</p>
-  </div>`;
+    <p class="note">Found ${esc(fmtDate(l.foundAt))} in public business listings and on their own website.</p>`:""}
+  </div>
+  <div class="s-foot">${foot}</div>`;
   if(focus){d.hidden=false;$("#scrim").hidden=false;$("#sheet-title").focus({preventScroll:true})}
 }
 function openSheet(id){
@@ -804,10 +876,19 @@ async function setStage(id,stage,opts={}){
   if(prev==="new")patch.contactedAt=nowIso; else if(stage==="new")patch.contactedAt=null;
   Object.assign(l,patch); changedId=id; render(); changedId=null;
   const undo=opts.silent?null:()=>setStage(id,prev,{silent:true}).then(ok=>ok&&toast(`${l.name}: back to ${STAGE[prev]}`));
+  if(prev==="new"&&stage!=="new"&&!opts.silent)maybeCelebrate();
   if(localMode){if(saveLocal(id,patch)){if(!opts.silent)toast(`${l.name}: ${STAGE[stage]}`,undo);return true}toast("Couldn't save in this browser");return false}
   if(!db||!canWrite){l.status=prev;render();toast("You can view these leads but not change them");return false}
   try{await db.collection("leads").doc(id).update(patch);if(!opts.silent)toast(`${l.name}: ${STAGE[stage]}`,undo);return true}
   catch(e){l.status=prev;render();if(e&&e.code==="invalid_argument")canWrite=false;toast("Couldn't save the status. Check your connection and try again");return false}
+}
+// One celebration per day, the moment today's goal is reached
+function maybeCelebrate(){
+  const k="lh-cel-"+dayKey(new Date()), done=leads.filter(x=>cAt(x)&&dayKey(new Date(cAt(x)))===dayKey(new Date())).length;
+  if(done<goal)return; try{if(localStorage.getItem(k))return;localStorage.setItem(k,"1")}catch{}
+  setTimeout(()=>toast(`Daily goal reached: ${done} contacted today`),900);
+  const a=document.activeElement, r=a&&a!==document.body?a.getBoundingClientRect():null;
+  if(window.lhCelebrate)window.lhCelebrate(r?{x:r.left+r.width/2,y:r.top+r.height/2}:{x:innerWidth/2,y:innerHeight/2});
 }
 async function savePatch(id,patch){
   if(localMode)return saveLocal(id,patch);
@@ -845,7 +926,7 @@ async function saveNotes(id){
 async function markAndNext(){
   const id=openId, nx=nextLead(id);
   const ok=await setStage(id,"contacted");
-  if(ok&&nx)openSheet(nx.id);
+  if(ok&&nx){sheetStepFor=null;openSheet(nx.id)}
 }
 function exportCSV(){
   const list=view==="dashboard"||view==="pipeline"?leads.slice().sort(bySc):filtered();
@@ -928,6 +1009,7 @@ document.addEventListener("click",e=>{
     if(t.dataset.fit!==undefined&&t.closest(".seg")){const pr=t.closest(".seg").querySelector('[aria-pressed="true"]');if(pr===t)return;
       segFrom=pr?{r:pr.getBoundingClientRect(),fit:pr.dataset.fit}:null;fit=t.dataset.fit;shown=PAGE;rowAnimFrom=0;render();return}
     if(t.dataset.goto){if(t.dataset.fit)fit=t.dataset.fit;setView(t.dataset.goto);return}
+    if(t.dataset.step&&t.closest("#sheet"))return setStep(+t.dataset.step);
     if(t.dataset.followed)return markFollowed(t.dataset.followed,t);
     if(t.dataset.open)return openSheet(t.dataset.open);
     if(t.dataset.copy){const l=leads.find(x=>x.id===t.dataset.id);if(!l)return;const k=t.dataset.copy;
@@ -981,6 +1063,56 @@ setView(location.hash.slice(1)||(()=>{try{return localStorage.getItem("lh-view3"
   },err=>{loaded=true;render();toast(`Couldn't load your leads (${err&&err.code||"error"}). Reload to try again.`)});
   setTimeout(()=>{if(!loaded){$("#content").innerHTML=`<section class="panel"><div class="empty"><b>Your leads are taking a while to load</b>Check your connection. The page fills in once they arrive.</div></section>`}},10000);
 })();
+</script>
+<script type="module">
+/* Effects layer. Loads after the app; if a CDN is unreachable the app keeps working with the CSS fallback. */
+const RMQ=matchMedia("(prefers-reduced-motion: reduce)");
+const PAPER="https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.82/+esm";
+const THREE="https://cdn.jsdelivr.net/npm/three@0.170.0/+esm";
+const sizing=(P,o={})=>{const s={...P.defaultObjectSizing,...o};return{u_fit:P.ShaderFitOptions[s.fit],u_scale:s.scale,u_rotation:s.rotation,u_originX:s.originX,u_originY:s.originY,u_offsetX:s.offsetX,u_offsetY:s.offsetY,u_worldWidth:s.worldWidth,u_worldHeight:s.worldHeight}};
+(async()=>{
+  let P; try{P=await import(PAPER)}catch(e){console.info("Lead Hub: effects library unavailable, using still background");return}
+  // 1. Living background: slow pink-and-black mesh gradient
+  try{
+    const bg=document.getElementById("bg"), colors=["#060607","#3d0c27","#08070a","#8f1d52","#140a12","#060607"];
+    const speed=()=>RMQ.matches?0:.16;
+    const m=new P.ShaderMount(bg,P.meshGradientFragmentShader,{u_colors:colors.map(P.getShaderColorFromString),u_colorsCount:colors.length,u_distortion:.85,u_swirl:.35,u_grainMixer:0,u_grainOverlay:.05,...sizing(P,{fit:"cover"})},undefined,speed(),18000,1,1920*1080);
+    requestAnimationFrame(()=>bg.classList.add("live"));
+    RMQ.addEventListener("change",()=>m.setSpeed(speed()));
+  }catch(e){console.info("Lead Hub: background effect off",e)}
+  // 2. Liquid-metal N (Paper's liquid-logo material on our mark)
+  try{
+    try{await document.fonts.ready}catch{}
+    const c=document.createElement("canvas");c.width=c.height=512;const x=c.getContext("2d");
+    x.fillStyle="#fff";x.font='700 380px Satoshi, ui-sans-serif, sans-serif';x.textAlign="center";x.textBaseline="middle";x.fillText("N",256,276);
+    const {pngBlob}=await P.toProcessedLiquidMetal(c.toDataURL("image/png"));
+    const img=new Image();img.src=URL.createObjectURL(pngBlob);await img.decode();
+    const host=document.getElementById("brand-mark");
+    new P.ShaderMount(host,P.liquidMetalFragmentShader,{u_colorBack:P.getShaderColorFromString("rgba(0,0,0,0)"),u_colorTint:P.getShaderColorFromString("#ffffff"),u_image:img,u_isImage:true,u_shape:P.LiquidMetalShapes.none,u_repetition:2,u_softness:.1,u_shiftRed:.3,u_shiftBlue:.3,u_distortion:.07,u_contour:.4,u_angle:70,...sizing(P,{scale:.86})},undefined,RMQ.matches?0:.8,1200,2,undefined,["u_image"]);
+    requestAnimationFrame(()=>host.classList.add("live"));
+  }catch(e){console.info("Lead Hub: liquid mark off",e)}
+})();
+// 3. Daily-goal celebration: a short burst of 3D shapes (three.js), loaded only when it plays
+window.lhCelebrate=async(origin)=>{
+  if(RMQ.matches)return;
+  let T; try{T=await import(THREE)}catch{return}
+  const W=innerWidth,H=innerHeight,r=new T.WebGLRenderer({alpha:true,antialias:true});
+  r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(W,H);
+  Object.assign(r.domElement.style,{position:"fixed",inset:"0",pointerEvents:"none",zIndex:"60"});
+  r.domElement.setAttribute("aria-hidden","true");document.body.appendChild(r.domElement);
+  const sc=new T.Scene(),cam=new T.PerspectiveCamera(50,W/H,.1,100);cam.position.z=14;
+  sc.add(new T.AmbientLight(0xffffff,1.3));const dl=new T.DirectionalLight(0xffffff,2.4);dl.position.set(3,5,8);sc.add(dl);
+  const hh=2*Math.tan(cam.fov*Math.PI/360)*cam.position.z,ww=hh*W/H,ox=(origin.x/W-.5)*ww,oy=-(origin.y/H-.5)*hh;
+  const geos=[new T.TorusGeometry(.2,.08,12,28),new T.IcosahedronGeometry(.2),new T.SphereGeometry(.16,16,16)];
+  const mats=[0xff5c9d,0xdb2777,0xffffff,0xffb3cf].map(c=>new T.MeshStandardMaterial({color:c,emissive:c,emissiveIntensity:.45,metalness:.15,roughness:.3,transparent:true}));
+  const parts=[];for(let i=0;i<84;i++){const m=new T.Mesh(geos[i%3],mats[i%4]);m.position.set(ox,oy,0);const a=Math.random()*Math.PI*2,sp=3+Math.random()*7;
+    parts.push({m,v:new T.Vector3(Math.cos(a)*sp,Math.abs(Math.sin(a))*sp*.9+4,(Math.random()-.5)*5),w:new T.Vector3(Math.random()*7,Math.random()*7,Math.random()*7)});sc.add(m)}
+  const t0=performance.now();let last=t0;
+  (function f(now){const dt=Math.min(.033,(now-last)/1000);last=now;const t=(now-t0)/1000;
+    for(const p of parts){p.v.y-=9*dt;p.m.position.addScaledVector(p.v,dt);p.m.rotation.x+=p.w.x*dt;p.m.rotation.y+=p.w.y*dt}
+    const o=Math.max(0,1-Math.max(0,t-1.5)/.9);mats.forEach(m=>m.opacity=o);r.render(sc,cam);
+    if(t<2.5&&!document.hidden)requestAnimationFrame(f);else{geos.forEach(g=>g.dispose());mats.forEach(m=>m.dispose());r.dispose();r.domElement.remove()}})(t0);
+};
 </script>
 
 </body>
