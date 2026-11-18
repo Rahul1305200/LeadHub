@@ -57,11 +57,12 @@ svg.i{width:18px;height:18px;flex:none;fill:currentColor}
 #bg::after{content:"";position:absolute;inset:0;background:radial-gradient(130% 100% at 50% 40%,transparent 50%,rgba(0,0,0,.45)),rgba(0,0,0,.18)}
 
 /* Liquid glass: live backdrop blur + specular rim (Liquid Glass JS look, without page snapshots) */
-.side,.top,.panel,.card,.sheet,.col,.pop{position:relative;background:var(--glass);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 70px rgba(0,0,0,.35)}
+.sheet,.pop{-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.side,.top,.panel,.card,.sheet,.col,.pop{position:relative;background:var(--glass);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 70px rgba(0,0,0,.35)}
 .card{background:var(--glass-card)}
 .sheet,.pop{background:var(--glass-strong)}
 .side::after,.top::after,.panel::after,.card::after,.sheet::after,.col::after,.pop::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:var(--rim);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);pointer-events:none}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.side,.top,.panel,.card,.sheet,.col,.pop{background:rgba(17,17,19,.96)}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.sheet,.pop{background:rgba(17,17,19,.96)}}
 
 /* Shell */
 .app{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;min-height:100%;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -429,7 +430,6 @@ body{text-shadow:0 1px 2px rgba(0,0,0,.28)}
 .lrow:hover,.bcard:hover,.frow:hover{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.05))}
 details.script .subj{background:rgba(255,255,255,.06)}
 /* glass controls */
-.top .btn,.top .search,.vhead .dd,.vhead .seg,.close,.menu,.s-foot .btn:not(.ghost),.steps{-webkit-backdrop-filter:blur(14px) saturate(170%);backdrop-filter:blur(14px) saturate(170%)}
 .btn,.dd,.rbtn,.rpill,.close,.copy,.menu{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border-color:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
 .btn:hover,.dd:hover,.rbtn:hover,.rpill:hover,.close:hover,.copy:hover{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.08));border-color:rgba(255,255,255,.22)}
 .close,.copy{border:1px solid rgba(255,255,255,.14)}
@@ -458,7 +458,7 @@ textarea{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
 .toast{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(240,232,238,.92));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .s-foot{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.18))}
 .s-head{border-bottom-color:rgba(255,255,255,.08)}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.side,.top,.panel,.card,.sheet,.col,.pop{background:rgba(24,16,22,.96)}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.sheet,.pop{background:rgba(24,16,22,.96)}}
 
 /* ===== Type and focus =====
    Mona Sans, one variable family. Roles: figure (wide 118%, 620, tabular) for counts; subject (620-660) for the
@@ -1232,15 +1232,22 @@ const RMQ=matchMedia("(prefers-reduced-motion: reduce)");
 const PAPER="https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.82/+esm";
 const THREE="https://cdn.jsdelivr.net/npm/three@0.170.0/+esm";
 const sizing=(P,o={})=>{const s={...P.defaultObjectSizing,...o};return{u_fit:P.ShaderFitOptions[s.fit],u_scale:s.scale,u_rotation:s.rotation,u_originX:s.originX,u_originY:s.originY,u_offsetX:s.offsetX,u_offsetY:s.offsetY,u_worldWidth:s.worldWidth,u_worldHeight:s.worldHeight}};
+/* One slow ticker for every shader: the motion is slow, so ~15 frames a second looks the same as 60 and costs a quarter.
+   It stops when the tab is hidden, while the lead panel covers the page, and under reduced motion. */
+const TICK=(()=>{const fns=[];let t=0,last=performance.now(),id=null;
+  const idle=()=>document.hidden||RMQ.matches||!document.getElementById("sheet")?.hidden;
+  const step=()=>{const now=performance.now();if(!idle()){t+=Math.min(now-last,200);fns.forEach(f=>f(t))}last=now};
+  const start=()=>{if(id===null)id=setInterval(step,66)};
+  start();document.addEventListener("visibilitychange",()=>{last=performance.now()});
+  return{add(f){fns.push(f);f(t)}}})();
 (async()=>{
   let P; try{P=await import(PAPER)}catch(e){console.info("Lead Hub: effects library unavailable, using still background");return}
   // 1. Living background: slow pink-and-black mesh gradient
   try{
     const bg=document.getElementById("bg"), colors=["#07050a","#6b1440","#0c0710","#d52c78","#2b0b23","#ff6aa8","#09060b"];
-    const speed=()=>RMQ.matches?0:.16;
-    const m=new P.ShaderMount(bg,P.meshGradientFragmentShader,{u_colors:colors.map(P.getShaderColorFromString),u_colorsCount:colors.length,u_distortion:.9,u_swirl:.45,u_grainMixer:0,u_grainOverlay:.05,...sizing(P,{fit:"cover"})},undefined,speed(),18000,1,1280*720);
+    const m=new P.ShaderMount(bg,P.meshGradientFragmentShader,{u_colors:colors.map(P.getShaderColorFromString),u_colorsCount:colors.length,u_distortion:.9,u_swirl:.45,u_grainMixer:0,u_grainOverlay:.05,...sizing(P,{fit:"cover"})},undefined,0,18000,1,960*540);
+    TICK.add(t=>m.setFrame(18000+t*.16));
     requestAnimationFrame(()=>bg.classList.add("live"));
-    RMQ.addEventListener("change",()=>m.setSpeed(speed()));
   }catch(e){console.info("Lead Hub: background effect off",e)}
   // 2. Liquid-metal N (Paper's liquid-logo material on our mark)
   try{
@@ -1250,7 +1257,8 @@ const sizing=(P,o={})=>{const s={...P.defaultObjectSizing,...o};return{u_fit:P.S
     const {pngBlob}=await P.toProcessedLiquidMetal(c.toDataURL("image/png"));
     const img=new Image();img.src=URL.createObjectURL(pngBlob);await img.decode();
     const host=document.getElementById("brand-mark");
-    new P.ShaderMount(host,P.liquidMetalFragmentShader,{u_colorBack:P.getShaderColorFromString("rgba(0,0,0,0)"),u_colorTint:P.getShaderColorFromString("#ffffff"),u_image:img,u_isImage:true,u_shape:P.LiquidMetalShapes.none,u_repetition:2,u_softness:.1,u_shiftRed:.3,u_shiftBlue:.3,u_distortion:.07,u_contour:.4,u_angle:70,...sizing(P,{scale:.86})},undefined,RMQ.matches?0:.8,1200,2,undefined,["u_image"]);
+    const lm=new P.ShaderMount(host,P.liquidMetalFragmentShader,{u_colorBack:P.getShaderColorFromString("rgba(0,0,0,0)"),u_colorTint:P.getShaderColorFromString("#ffffff"),u_image:img,u_isImage:true,u_shape:P.LiquidMetalShapes.none,u_repetition:2,u_softness:.1,u_shiftRed:.3,u_shiftBlue:.3,u_distortion:.07,u_contour:.4,u_angle:70,...sizing(P,{scale:.86})},undefined,0,1200,2,undefined,["u_image"]);
+    TICK.add(t=>lm.setFrame(1200+t*.8));
     requestAnimationFrame(()=>host.classList.add("live"));
   }catch(e){console.info("Lead Hub: liquid mark off",e)}
 })();
