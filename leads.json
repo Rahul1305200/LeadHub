@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T12:44:21+00:00",
+ "generatedAt": "2026-11-18T03:13:39+00:00",
  "leads": [
   {
    "id": "45a7bda3a1a3",
@@ -944,60 +944,6 @@
    "contactedAt": "2026-11-17T18:37:00+06:00",
    "statusChangedAt": "2026-11-17T18:37:00+06:00",
    "notes": "Cold email sent to aaron@tillmannlaw.com from nurandcode@gmail.com on 17 Nov 2026."
-  },
-  {
-   "id": "6fc561570557",
-   "name": "Brown Tarlow Bridges & Palmer P.C. Attorneys At Law",
-   "trade": "Lawyer",
-   "city": "Newberg, OR",
-   "area": "Portland area",
-   "website": "https://www.newberglaw.com/",
-   "domain": "newberglaw.com",
-   "phone": "(503) 538-3138",
-   "email": "john@newberglaw.com",
-   "emailStatus": "verified",
-   "contactName": "John Bridges",
-   "contactTitle": "Attorney, Managing Partner",
-   "contactForm": "https://newberglaw.com/contact",
-   "platform": "WordPress",
-   "segment": "weak_site",
-   "score": 79,
-   "reasons": [
-    "Customers can't book online",
-    "Tiny site (1 page)"
-   ],
-   "details": [
-    "Customers can't book or request a quote online. They have to phone during office hours.",
-    "The whole site is 1 page, with no page per service or area, which is what ranks on Google.",
-    "Runs on WordPress, which you can take over and improve quickly."
-   ],
-   "problems": [
-    {
-     "title": "Customers can't book online",
-     "text": "There's no way to book or ask for a quote on the site, so anyone visiting after hours has to call back during the day."
-    },
-    {
-     "title": "Tiny site (1 page)",
-     "text": "There's no page for each service or area they cover, and those pages are what rank on Google."
-    },
-    {
-     "title": "Runs on WordPress",
-     "text": "Easy to take over and improve quickly, without starting from scratch."
-    }
-   ],
-   "pitch": "A new site with online booking",
-   "caution": "",
-   "fit": "Strong fit",
-   "observations": [
-    "There's no way to book online, so anyone visiting after hours has to call back during the day",
-    "The site has only 1 page, so there's no page for each service or area you cover, which is what ranks on Google"
-   ],
-   "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17",
-   "status": "contacted",
-   "contactedAt": "2026-11-17T18:38:00+06:00",
-   "statusChangedAt": "2026-11-17T18:38:00+06:00",
-   "notes": "Cold email sent to john@newberglaw.com from nurandcode@gmail.com on 17 Nov 2026."
   },
   {
    "id": "d6d8f6e2cbdd",
@@ -4239,6 +4185,60 @@
    ],
    "source": "OpenStreetMap + company website",
    "foundAt": "2026-11-17"
+  },
+  {
+   "id": "6fc561570557",
+   "name": "Brown Tarlow Bridges & Palmer P.C. Attorneys At Law",
+   "trade": "Lawyer",
+   "city": "Newberg, OR",
+   "area": "Portland area",
+   "website": "https://www.newberglaw.com/",
+   "domain": "newberglaw.com",
+   "phone": "(503) 538-3138",
+   "email": "",
+   "emailStatus": "",
+   "contactName": "Steve Palmer",
+   "contactTitle": "Attorney, Managing Partner",
+   "contactForm": "https://newberglaw.com/contact",
+   "platform": "WordPress",
+   "segment": "weak_site",
+   "score": 67,
+   "reasons": [
+    "Customers can't book online",
+    "Tiny site (1 page)"
+   ],
+   "details": [
+    "Customers can't book or request a quote online. They have to phone during office hours.",
+    "The whole site is 1 page, with no page per service or area, which is what ranks on Google.",
+    "Runs on WordPress, which you can take over and improve quickly."
+   ],
+   "problems": [
+    {
+     "title": "Customers can't book online",
+     "text": "There's no way to book or ask for a quote on the site, so anyone visiting after hours has to call back during the day."
+    },
+    {
+     "title": "Tiny site (1 page)",
+     "text": "There's no page for each service or area they cover, and those pages are what rank on Google."
+    },
+    {
+     "title": "Runs on WordPress",
+     "text": "Easy to take over and improve quickly, without starting from scratch."
+    }
+   ],
+   "pitch": "A new site with online booking",
+   "caution": "",
+   "fit": "Good fit",
+   "observations": [
+    "There's no way to book online, so anyone visiting after hours has to call back during the day",
+    "The site has only 1 page, so there's no page for each service or area you cover, which is what ranks on Google"
+   ],
+   "source": "OpenStreetMap + company website",
+   "foundAt": "2026-11-17",
+   "status": "lost",
+   "contactedAt": "2026-11-17T18:38:00+06:00",
+   "statusChangedAt": "2026-11-17T22:16:00+06:00",
+   "notes": "Cold email sent 17 Nov 2026. John Bridges replied \"no\" (opt-out) at 10:16 PM. Do not email or follow up again."
   },
   {
    "id": "6c1a88b6b356",
