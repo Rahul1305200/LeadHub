@@ -612,6 +612,20 @@ p{text-wrap:pretty}
 /* the phone drawer floats over the page, so it is frosted glass: darker tint plus blur, text stays readable */
 @media (max-width:900px){.side{background:var(--sheen),rgba(16,10,16,.8);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}}
 
+/* ===== Smoothness (18 Nov 2026) =====
+   Off-screen rows, board cards and follow-up rows skip layout and paint until they scroll into view
+   (content-visibility), so page switches, filters and search re-render only what you can see. */
+.lrow{content-visibility:auto;contain-intrinsic-size:auto 110px}
+.bcard{content-visibility:auto;contain-intrinsic-size:auto 72px}
+.frow{content-visibility:auto;contain-intrinsic-size:auto 64px}
+/* Cheaper paint, same look: a crisp text shadow instead of a blurred one, smaller soft panel shadows,
+   no full-screen blur behind the lead panel (just a dim), a lighter blur on floating glass, and the panel pre-promoted for its slide. */
+body{text-shadow:0 1px 0 rgba(0,0,0,.34)}
+.side,.top,.panel,.card,.col{box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 18px 44px rgba(0,0,0,.34)}
+.scrim{background:rgba(4,3,6,.56);-webkit-backdrop-filter:none;backdrop-filter:none}
+:root{--blur:blur(16px) saturate(170%) brightness(1.05)}
+.sheet{will-change:transform}
+
 @media (max-width:1240px){.cards3{grid-template-columns:repeat(2,minmax(0,1fr))}.cards3 .card:first-child{grid-column:1/-1}.hero .greet{margin-left:0;text-align:left;width:100%}}
 @media (max-width:1180px){
   .lrow{grid-template-columns:minmax(0,1fr) auto 40px;grid-template-areas:"who reach go" "what what what";gap:14px 16px}
@@ -961,7 +975,7 @@ function vheadHTML(){
   <button class="dd filter" type="button" id="dd-area" data-dd="area" aria-haspopup="listbox" aria-expanded="false" aria-label="Filter by area"><span class="lbl">${esc(areaF||"All areas")}</span><svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></button></div></div></section>`;
 }
 function rowHTML(l,i){
-  const r=l.reasons||[], w=st(l)!=="new", id=esc(l.id), an=rowAnimFrom!==null&&i>=rowAnimFrom;
+  const r=l.reasons||[], w=st(l)!=="new", id=esc(l.id), an=rowAnimFrom!==null&&i>=rowAnimFrom&&i-rowAnimFrom<8;
   const chips=r.slice(0,2).map(probChip).join("")+(r.length>2?`<span class="chip more">+${r.length-2} more</span>`:"")+(l.caution?`<span class="chip warn">${ic("warn")}Has an agency</span>`:"");
   return `<div class="lrow${w?" worked":""}${an?" in":""}" ${an?`style="--i:${Math.min(i-rowAnimFrom,10)}" `:""}data-row="${id}">
     <div class="who">${monoT(l,"sm")}<div style="min-width:0"><button class="name" type="button" data-open="${id}">${esc(l.name)}</button><span>${esc(l.trade)} · ${esc(l.city)}</span>${w?`<span class="stag st-${st(l)}${l.id===changedId?" pop":""}">${sic(st(l))}${STAGE[st(l)]}</span>`:""}</div></div>
@@ -1256,7 +1270,7 @@ function ddPick(i){
 /* Events */
 window.addEventListener("hashchange",()=>setView(location.hash.slice(1),true));
 $("#nav").addEventListener("click",e=>{const a=e.target.closest("a[data-view]");if(a){e.preventDefault();setView(a.dataset.view)}});
-$("#q").addEventListener("input",()=>{shown=PAGE;if(view==="dashboard"&&$("#q").value.trim())setView("leads");else render()});
+let qTimer=0;$("#q").addEventListener("input",()=>{clearTimeout(qTimer);qTimer=setTimeout(()=>{shown=PAGE;if(view==="dashboard"&&$("#q").value.trim())setView("leads");else render()},110)});
 $("#export").addEventListener("click",exportCSV);
 $("#next-top").addEventListener("click",()=>{const n=nextLead(null);if(n)openSheet(n.id)});
 $("#menu").addEventListener("click",()=>{const o=$("#side").classList.toggle("open");$("#menu").setAttribute("aria-expanded",String(o))});
@@ -1343,11 +1357,15 @@ const THREE="https://cdn.jsdelivr.net/npm/three@0.170.0/+esm";
 const sizing=(P,o={})=>{const s={...P.defaultObjectSizing,...o};return{u_fit:P.ShaderFitOptions[s.fit],u_scale:s.scale,u_rotation:s.rotation,u_originX:s.originX,u_originY:s.originY,u_offsetX:s.offsetX,u_offsetY:s.offsetY,u_worldWidth:s.worldWidth,u_worldHeight:s.worldHeight}};
 /* One slow ticker for every shader: the motion is slow, so ~15 frames a second looks the same as 60 and costs a quarter.
    It stops when the tab is hidden, while the lead panel covers the page, and under reduced motion. */
-const TICK=(()=>{const fns=[];let t=0,last=performance.now(),id=null;
-  const idle=()=>document.hidden||RMQ.matches||!document.getElementById("sheet")?.hidden;
-  const step=()=>{const now=performance.now();if(!idle()){t+=Math.min(now-last,200);fns.forEach(f=>f(t))}last=now};
-  const start=()=>{if(id===null)id=setInterval(step,66)};
-  start();document.addEventListener("visibilitychange",()=>{last=performance.now()});
+const TICK=(()=>{const fns=[];let t=0,last=0,acc=0,scrollUntil=0;
+  // Synced to the screen's refresh (requestAnimationFrame) and drawn at ~30 fps, so the slow drift looks smooth, not stepped.
+  // Pauses while you scroll (scrolling stays light), while the lead panel covers the page, when the tab is hidden, and under reduced motion.
+  const idle=now=>document.hidden||RMQ.matches||now<scrollUntil||!document.getElementById("sheet")?.hidden;
+  document.addEventListener("scroll",()=>{scrollUntil=performance.now()+220},{capture:true,passive:true});
+  const loop=now=>{const dt=last?Math.min(now-last,100):0;last=now;
+    if(!idle(now)){t+=dt;acc+=dt;if(acc>=31){acc=0;fns.forEach(f=>f(t))}}
+    requestAnimationFrame(loop)};
+  requestAnimationFrame(loop);
   return{add(f){fns.push(f);f(t)}}})();
 (async()=>{
   let P; try{P=await import(PAPER)}catch(e){console.info("Lead Hub: effects library unavailable, using still background");return}
