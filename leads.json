@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-18T03:13:39+00:00",
+ "generatedAt": "2026-11-18T03:23:50+00:00",
  "leads": [
   {
    "id": "45a7bda3a1a3",
@@ -3075,7 +3075,11 @@
     "The site has no schema markup, so Google can't show your hours, reviews or services in search results"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-16"
+   "foundAt": "2026-11-16",
+   "status": "contacted",
+   "contactedAt": "2026-11-18T09:18:00+06:00",
+   "statusChangedAt": "2026-11-18T09:18:00+06:00",
+   "notes": "Personal cold email sent to info@techridgedental.com on 18 Nov 2026 (subject: Tech Ridge Dental's Google listing)."
   },
   {
    "id": "5ba82c3fe956",
@@ -3118,7 +3122,11 @@
     "There's no way to book online, so anyone visiting after hours has to call back during the day"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "status": "contacted",
+   "contactedAt": "2026-11-18T09:20:00+06:00",
+   "statusChangedAt": "2026-11-18T09:20:00+06:00",
+   "notes": "Personal cold email sent to Nick on 18 Nov 2026 (subject: Booking design consultations online)."
   },
   {
    "id": "ce7bb789f829",
@@ -3317,7 +3325,8 @@
     "The site has no schema markup, so Google can't show your hours, reviews or services in search results"
    ],
    "source": "OpenStreetMap + company website",
-   "foundAt": "2026-11-17"
+   "foundAt": "2026-11-17",
+   "notes": "18 Nov 2026: Gmail blocked our email to contact@lovejoy-dental.com as suspicious, so it was NOT delivered. Try again later from a business mailbox, or call."
   },
   {
    "id": "7ade5073f40b",
