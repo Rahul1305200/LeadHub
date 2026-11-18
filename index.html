@@ -8,6 +8,7 @@
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>NurAndCode Lead Hub</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='176 266 900 768' role='img' aria-label='Nur%26amp%3BLead'%3E %3Cpath fill='%23FF5A93' d='M293 287H962L1052 414Q1067 435 1064 452C1058 500 990 530 915 530C850 530 790 505 768 460C745 500 690 522 627 522C565 522 510 500 487 458C465 505 405 530 340 530C265 530 195 498 188 452Q186 434 200 414Z'/%3E %3Cpath fill='%23D92A6E' d='M243 553C300 570 400 568 487 520C530 545 580 548 627 548C675 548 725 545 768 520C855 568 955 570 1012 553V948Q1012 1018 942 1018H668V847L795 836L478 595V932L570 866L575 1018H313Q243 1018 243 948Z'/%3E %3C/svg%3E">
 </head>
 <body>
 <style>
@@ -56,8 +57,13 @@ svg.i{width:1.3em;height:1.3em;flex:none;fill:none;stroke:currentColor;stroke-wi
 #bg.live canvas{opacity:1}
 #bg::after{content:"";position:absolute;inset:0;background:radial-gradient(130% 100% at 50% 40%,transparent 50%,rgba(0,0,0,.45)),rgba(0,0,0,.18)}
 
-/* Surfaces are solid (glass removed 18 Nov 2026 at the user's request); colours live in the Solid surfaces block */
-.side,.top,.panel,.card,.sheet,.col,.pop{position:relative}
+/* Liquid glass: live backdrop blur + specular rim (Liquid Glass JS look, without page snapshots) */
+.sheet,.pop{-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}
+.side,.top,.panel,.card,.sheet,.col,.pop{position:relative;background:var(--glass);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 70px rgba(0,0,0,.35)}
+.card{background:var(--glass-card)}
+.sheet,.pop{background:var(--glass-strong)}
+.side::after,.top::after,.panel::after,.card::after,.sheet::after,.col::after,.pop::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:var(--rim);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);pointer-events:none}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.sheet,.pop{background:rgba(17,17,19,.96)}}
 
 /* Shell */
 .app{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;min-height:100%;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -404,32 +410,56 @@ textarea:focus{outline:none;border-color:var(--pink-line)}
 .done svg.i{animation:pop .26s var(--e-out)}
 .rbtn.done,.copy.done,.rpill.done svg.i,.side-foot .link.done svg.i,.btn.done:not(.pink) svg.i{color:var(--pink)}
 
-/* ===== Solid surfaces (18 Nov 2026) =====
-   Glass removed at the user's request: opaque wine-black panels on the living background, one hairline each,
-   no sheen, no rim, no blur. Depth is tonal: surface < card < row < raised. Everything else (pink, tiles, layout) is unchanged. */
-:root{--muted:#b4b0bc; --fg-2:#d6d3dc;
-  --surface:#141015; --surface-card:#18131a; --row:#1f1921; --row-h:#28202b; --surface-raised:#2a222d; --hair:rgba(255,255,255,.07)}
-.side,.top,.panel,.card,.col{background:var(--surface);border:1px solid var(--hair);box-shadow:none}
-.card{background:var(--surface-card)}
-.sheet,.pop{background:var(--surface-card);border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.55)}
-.lrow,.bcard,.frow,.fu-empty,.empty-col,.pitchbox,details.script,.caution{background:var(--row);box-shadow:none}
-.lrow:hover,.bcard:hover,.frow:hover{background:var(--row-h)}
-details.script .subj,.subj{background:var(--surface-raised)}
-.nav a[aria-current="page"]::before{background:var(--surface-raised);box-shadow:inset 0 0 0 1px var(--hair)}
-.nav a:hover{background:rgba(255,255,255,.05)}
-textarea{background:var(--row);border-color:rgba(255,255,255,.12)}
-.kbd span{background:var(--surface-raised)}
-.mono{background:rgba(255,92,157,.16)}
-.mono.plain{background:var(--surface-raised)}
-.ticks i{background:var(--surface-raised)}
-.ticks i.on{background:var(--pink)}
-.hbar .tr{background:var(--surface-raised)}
-.ghead .gn{background:var(--surface-raised)}
-.dd.status{background:color-mix(in srgb,var(--sc) 16%,var(--surface-card));border-color:color-mix(in srgb,var(--sc) 30%,transparent)}
-.toast{background:#f6f4f6}
-.s-foot{background:var(--surface-card)}
-.s-head{border-bottom-color:var(--hair)}
-.scrim{background:rgba(4,3,5,.6);-webkit-backdrop-filter:none;backdrop-filter:none}
+/* ===== Liquid glass, site-wide =====
+   Three layers on every surface: a translucent tint, a top sheen, and a specular rim (bright top-left, pink bottom-right).
+   Big surfaces blur what's behind them; rows and controls inside them are lighter clear glass. */
+:root{
+  --glass:rgba(20,12,20,.40); --glass-strong:rgba(16,10,16,.62); --glass-card:rgba(24,14,22,.36); --muted:#b4b0bc; --fg-2:#d6d3dc;
+  --sheen:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.035) 38%,rgba(255,255,255,0) 70%);
+  --rim:linear-gradient(145deg,rgba(255,255,255,.55),rgba(255,255,255,.10) 28%,rgba(255,255,255,.02) 55%,rgba(255,140,190,.30) 85%,rgba(255,92,157,.55));
+  --blur:blur(22px) saturate(185%) brightness(1.06);
+  --clear:rgba(255,255,255,.055); --clear-h:rgba(255,255,255,.10);
+  --edge:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 0 1px rgba(255,255,255,.07),inset 0 -1px 0 rgba(255,92,157,.10);
+}
+body{text-shadow:0 1px 2px rgba(0,0,0,.28)}
+.btn.pink,.btn.white,.seg button[aria-pressed="true"],.toast{text-shadow:none}
+.side,.top,.panel,.card,.sheet,.col,.pop{background:var(--sheen),var(--glass);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 80px rgba(0,0,0,.40)}
+.card{background:var(--sheen),var(--glass-card)}
+.sheet,.pop{background:var(--sheen),var(--glass-strong)}
+/* clear glass: rows, inner boxes */
+.lrow,.bcard,.frow,.fu-empty,.empty-col,.pitchbox,details.script,.subj,.caution{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));box-shadow:var(--edge)}
+.lrow:hover,.bcard:hover,.frow:hover{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.05))}
+details.script .subj{background:rgba(255,255,255,.06)}
+/* glass controls */
+.btn,.dd,.rbtn,.rpill,.close,.copy,.menu{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border-color:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.btn:hover,.dd:hover,.rbtn:hover,.rpill:hover,.close:hover,.copy:hover{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.08));border-color:rgba(255,255,255,.22)}
+.close,.copy{border:1px solid rgba(255,255,255,.14)}
+.btn.ghost{background:transparent;box-shadow:none;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.btn.pink{background:linear-gradient(180deg,#f2559a,#db2777 55%,#c21f68);border-color:rgba(255,170,205,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 6px rgba(120,10,60,.35),0 10px 28px rgba(219,39,119,.38)}
+.btn.pink:hover{background:linear-gradient(180deg,#ff6aa8,#e83d88 55%,#cf2a74);border-color:rgba(255,190,215,.6)}
+.btn.white{background:linear-gradient(180deg,#ffffff,#ece7ec);border-color:#fff;box-shadow:inset 0 -2px 4px rgba(0,0,0,.06),0 10px 26px rgba(0,0,0,.25)}
+.dd.status{background:linear-gradient(180deg,color-mix(in srgb,var(--sc) 22%,rgba(255,255,255,.06)),color-mix(in srgb,var(--sc) 10%,transparent));border-color:color-mix(in srgb,var(--sc) 30%,rgba(255,255,255,.1))}
+.search{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border-color:rgba(255,255,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.16)}
+.seg,.steps,.vhead .seg{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.025));box-shadow:var(--edge)}
+.seg button[aria-pressed="true"]::before{background:linear-gradient(180deg,#fff,#eee8ef);box-shadow:inset 0 -2px 4px rgba(0,0,0,.08),0 6px 16px rgba(0,0,0,.25)}
+.step.on{background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.nav a[aria-current="page"]::before{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.05));box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(255,255,255,.07)}
+.nav a:hover{background:rgba(255,255,255,.06)}
+textarea{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.kbd span{background:rgba(255,255,255,.1)}
+.date,.vhead .ccirc{background:radial-gradient(80% 80% at 30% 20%,rgba(255,255,255,.16),rgba(255,255,255,.03) 60%);border-color:rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 12px 30px rgba(0,0,0,.3)}
+.mono{background:linear-gradient(160deg,rgba(255,92,157,.30),rgba(255,92,157,.10));box-shadow:inset 0 1px 0 rgba(255,255,255,.2),inset 0 0 0 1px rgba(255,92,157,.25)}
+.mono.plain{background:linear-gradient(160deg,rgba(255,255,255,.14),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 0 1px rgba(255,255,255,.08)}
+.ib{box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.ticks i{background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.ticks i.on{background:linear-gradient(180deg,#ff7ab3,#e83d88);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 6px 16px rgba(219,39,119,.35)}
+.hbar .tr{background:rgba(255,255,255,.08);box-shadow:inset 0 1px 1px rgba(0,0,0,.25)}
+.badge,.ghead .gn{box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+.ghead .gn{background:rgba(255,255,255,.1)}
+.toast{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(240,232,238,.92));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.s-foot{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.18))}
+.s-head{border-bottom-color:rgba(255,255,255,.08)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.sheet,.pop{background:rgba(24,16,22,.96)}}
 
 /* ===== Type and focus =====
    Mona Sans, one variable family. Roles: figure (wide 118%, 620, tabular) for counts; subject (620-660) for the
@@ -575,6 +605,13 @@ p{text-wrap:pretty}
 .toast button svg.i{width:16px;height:16px}
 .empty-col svg.i{width:24px;height:24px;color:var(--muted)}
 
+/* ===== Logo (Nur&Lead storefront + cursor, 18 Nov 2026) =====
+   The user's own mark, redrawn as vector in logo.svg and inlined by assemble.py. No tile behind it: it stands on the glass. */
+.brand .mark.logo{width:50px;height:auto;background:none;border-radius:0;box-shadow:none;overflow:visible;display:block;flex:none}
+.brand .mark.logo svg{display:block;width:100%;height:auto}
+/* the phone drawer floats over the page, so it is frosted glass: darker tint plus blur, text stays readable */
+@media (max-width:900px){.side{background:var(--sheen),rgba(16,10,16,.8);-webkit-backdrop-filter:var(--blur);backdrop-filter:var(--blur)}}
+
 @media (max-width:1240px){.cards3{grid-template-columns:repeat(2,minmax(0,1fr))}.cards3 .card:first-child{grid-column:1/-1}.hero .greet{margin-left:0;text-align:left;width:100%}}
 @media (max-width:1180px){
   .lrow{grid-template-columns:minmax(0,1fr) auto 40px;grid-template-areas:"who reach go" "what what what";gap:14px 16px}
@@ -714,7 +751,10 @@ p{text-wrap:pretty}
 <div id="bg" aria-hidden="true"></div>
 <div class="app">
   <aside class="side" id="side" aria-label="Lead Hub">
-    <div class="brand"><span class="mark" id="brand-mark" aria-hidden="true"><span class="mark-n">N</span></span><div><b>NurAndCode</b><small>Lead Hub</small></div></div>
+    <div class="brand"><span class="mark logo" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="176 266 900 768" aria-hidden="true" focusable="false">
+  <path fill="#FF5A93" d="M293 287H962L1052 414Q1067 435 1064 452C1058 500 990 530 915 530C850 530 790 505 768 460C745 500 690 522 627 522C565 522 510 500 487 458C465 505 405 530 340 530C265 530 195 498 188 452Q186 434 200 414Z"/>
+  <path fill="#D92A6E" d="M243 553C300 570 400 568 487 520C530 545 580 548 627 548C675 548 725 545 768 520C855 568 955 570 1012 553V948Q1012 1018 942 1018H668V847L795 836L478 595V932L570 866L575 1018H313Q243 1018 243 948Z"/>
+</svg></span><div><b>NurAndCode</b><small>Lead Hub</small></div></div>
     <nav aria-label="Pages"><ul class="nav" id="nav">
       <li><a href="#dashboard" data-view="dashboard"><svg class="i" aria-hidden="true"><use href="#i-squares"/></svg>Dashboard</a></li>
       <li><a href="#leads" data-view="leads"><svg class="i" aria-hidden="true"><use href="#i-browser"/></svg>Leads<span class="count num" id="c-leads"></span></a></li>
@@ -1318,18 +1358,6 @@ const TICK=(()=>{const fns=[];let t=0,last=performance.now(),id=null;
     TICK.add(t=>m.setFrame(18000+t*.16));
     requestAnimationFrame(()=>bg.classList.add("live"));
   }catch(e){console.info("Lead Hub: background effect off",e)}
-  // 2. Liquid-metal N (Paper's liquid-logo material on our mark)
-  try{
-    try{await document.fonts.ready}catch{}
-    const c=document.createElement("canvas");c.width=c.height=512;const x=c.getContext("2d");
-    x.fillStyle="#fff";x.font='700 380px "Mona Sans", ui-sans-serif, sans-serif';x.textAlign="center";x.textBaseline="middle";x.fillText("N",256,276);
-    const {pngBlob}=await P.toProcessedLiquidMetal(c.toDataURL("image/png"));
-    const img=new Image();img.src=URL.createObjectURL(pngBlob);await img.decode();
-    const host=document.getElementById("brand-mark");
-    const lm=new P.ShaderMount(host,P.liquidMetalFragmentShader,{u_colorBack:P.getShaderColorFromString("rgba(0,0,0,0)"),u_colorTint:P.getShaderColorFromString("#ffffff"),u_image:img,u_isImage:true,u_shape:P.LiquidMetalShapes.none,u_repetition:2,u_softness:.1,u_shiftRed:.3,u_shiftBlue:.3,u_distortion:.07,u_contour:.4,u_angle:70,...sizing(P,{scale:.86})},undefined,0,1200,2,undefined,["u_image"]);
-    TICK.add(t=>lm.setFrame(1200+t*.8));
-    requestAnimationFrame(()=>host.classList.add("live"));
-  }catch(e){console.info("Lead Hub: liquid mark off",e)}
 })();
 // 3. Daily-goal celebration: a short burst of 3D shapes (three.js), loaded only when it plays
 window.lhCelebrate=async(origin)=>{
